@@ -1,0 +1,25 @@
+@use '../variables' as v;
+
+@mixin base-button($color, $hover-color, $text-color, $font-weight, $border, $padding) {
+    background-color: $color;
+    color: $text-color;
+    height: 48px;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 16px;
+    font-weight: $font-weight;
+    border: $border;
+    padding: $padding;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+.flat-button {
+    @include base-button(v.$dark-green,v.$green, v.$white, 600, none, 16px 38.5px);
+}
+
+.basic-button {
+    @include base-button(v.$white, v.$gray-light, v.$dark-green, 500, 1px solid v.$gray, 10px 12px);
+}
