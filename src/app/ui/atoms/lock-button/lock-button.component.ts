@@ -17,8 +17,6 @@ export class LockButtonComponent {
 
   public handleButtonClick(): void {
     this.isLocked.update((currentState) => !currentState);
-    console.log(this.isLocked());
-    
     this.buttonClick.emit(this.isLocked());
   }
 }
