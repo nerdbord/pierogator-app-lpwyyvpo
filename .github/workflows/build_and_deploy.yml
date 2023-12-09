@@ -33,9 +33,9 @@ jobs:
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
-          publish-dir: dist/pierogator/browser
+          publish-dir: dist/pierogator
           deploy-message: 'Deploy from GitHub Actions'
-          args: deploy --prod --dir=dist/pierogator/browser 
+          production-branch: main
         env:
           NETLIFY_AUTH_TOKEN: nfp_EJjShNbnxYZ4x3BMhbHMZ4zkP8ksTkuze5d3
           NETLIFY_SITE_ID: e5f52705-be28-4e04-ac65-a3d73f10750e
