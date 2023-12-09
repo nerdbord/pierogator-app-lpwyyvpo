@@ -1,18 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet, Event } from '@angular/router';
+
 import { PageLayoutComponent } from './ui/layouts/page-layout/page-layout.component';
-import { AccordionComponent } from './ui/templates/accordion/accordion.component';
-import { SectionHeaderComponent } from './ui/molecules/section-header/section-header.component';
-import { TextareaInputComponent } from './ui/molecules/textarea-input/textarea-input.component';
+
+import { HEADERS_URL_MAP } from './const';
+import { RoutesEnum } from './routes';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PageLayoutComponent, AccordionComponent, SectionHeaderComponent, TextareaInputComponent],
+  imports: [CommonModule, RouterOutlet, PageLayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'pierogator';
+export class AppComponent implements OnInit {
+  public currentHeader: WritableSignal<string> = signal('header-pierogator');
+  
+  public headerPath: Signal<string> = computed(() => `assets/headers/${this.currentHeader()}.svg`)  
+
+  private _routeChange$ = inject(Router).events.pipe((takeUntilDestroyed()))
+
+  public ngOnInit(): void {
+    this._handleNavigationChange();
+  }
+
+  private _handleNavigationChange(): void {
+    this._routeChange$.subscribe((routeChange: Event) => {
+      if(routeChange instanceof NavigationEnd) {
+        const updatedHeader = HEADERS_URL_MAP.get(routeChange.url.slice(1) as unknown as RoutesEnum);
+        
+        if(updatedHeader) this.currentHeader.set(updatedHeader)
+      }
+    })
+  }
 }
