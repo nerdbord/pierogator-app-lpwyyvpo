@@ -4,14 +4,14 @@ import { Subscription } from 'rxjs';
 
 
 @Component({
-  selector: 'ui-default-input',
+  selector: 'ui-default-input-atom',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './default-input.component.html',
   styleUrl: './default-input.component.scss'
 })
 export class DefaultInputComponent implements OnInit, OnDestroy {
-  @Input({required: true}) public label: string = '';
+  @Input({required: true}) public label!: string;
 
   @Input() public set isDisabled(value: boolean) {
     if(value) this.inputControl.disable();

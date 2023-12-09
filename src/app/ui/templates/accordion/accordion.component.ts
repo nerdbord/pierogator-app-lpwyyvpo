@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, WritableSignal, signal } from '@angular/core';
 
 @Component({
-  selector: 'ui-accordion',
+  selector: 'ui-accordion-template',
   standalone: true,
   imports: [NgClass],
   templateUrl: './accordion.component.html',

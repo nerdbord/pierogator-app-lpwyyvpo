@@ -2,7 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output, Signal, WritableSignal, computed, signal } from '@angular/core';
 
 @Component({
-  selector: 'ui-lock-button',
+  selector: 'ui-lock-button-atom',
   standalone: true,
   imports: [NgClass],
   templateUrl: './lock-button.component.html',
