@@ -1,0 +1,48 @@
+@use '../../../../styles/variables' as v;
+
+.container {
+    width: calc(343px - 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 12px 16px;
+    border-radius: 4px;
+
+    box-shadow:inset 0px 0px 0px 1px v.$gray;
+
+    &.expanded {
+        padding: 12px 16px 16px;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        height: fit-content;
+        max-height: 24px;
+
+        .title {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 500;
+        color: v.$gray-dark;
+        user-select: none;
+        }
+
+        img {
+            cursor: pointer;
+
+            &.expanded {
+                transform: rotate(180deg);
+            }
+        }
+     
+    }
+
+    &__content {
+        color: v.$dark-green;
+        line-height: 16px;
+    }
+}
