@@ -7,6 +7,11 @@
         <span class="h2-typography">{{ sectionName }}</span>
     </div>
     @if(buttonText) {
-    <button class="basic-button">{{ buttonText }}</button>
+        <div class="container__button">
+            @if(isLoading) {
+             <ui-loader-atom />
+            }
+            <button class="basic-button">{{ buttonText }}</button>
+        </div>
     }
 </div>

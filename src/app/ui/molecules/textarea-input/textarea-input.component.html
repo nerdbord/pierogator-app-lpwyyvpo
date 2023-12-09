@@ -5,7 +5,7 @@
         [ngClass]="{'is-locked': isLocked()}"
     >
         @if(canBeLocked) {
-            <ui-lock-button 
+            <ui-lock-button-atom
             [lockState]="isLocked()"
             (buttonClick)="handleLockButtonClick($event)"
             />

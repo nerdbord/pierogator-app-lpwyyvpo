@@ -1,0 +1,20 @@
+.container {
+    position: relative;
+    max-width: 375px;
+    max-height: 100vh;
+    overflow: auto;
+
+    &__header {
+        position: sticky;
+        top: 0;
+        height: 118px;
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    &__content {
+        padding: 18px 16px 16px;
+    }
+}
