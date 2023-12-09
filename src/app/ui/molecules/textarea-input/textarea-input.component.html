@@ -1,6 +1,9 @@
 <div class="container">
     <label [for]="label">{{ label }}</label>
-    <div class="container__input">
+    <div 
+        class="container__input"
+        [ngClass]="{'is-locked': isLocked()}"
+    >
         @if(canBeLocked) {
             <ui-lock-button 
             [lockState]="isLocked()"

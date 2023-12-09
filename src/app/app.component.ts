@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { DefaultInputComponent } from './ui/atoms/default-input/default-input.component';
+import { TextareaInputComponent } from './ui/molecules/textarea-input/textarea-input.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, DefaultInputComponent],
+  imports: [CommonModule, RouterOutlet, TextareaInputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -3,11 +3,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LockButtonComponent } from '../../atoms/lock-button/lock-button.component';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ui-textarea-input',
   standalone: true,
-  imports: [LockButtonComponent, ReactiveFormsModule],
+  imports: [LockButtonComponent, ReactiveFormsModule, NgClass],
   templateUrl: './textarea-input.component.html',
   styleUrl: './textarea-input.component.scss'
 })
