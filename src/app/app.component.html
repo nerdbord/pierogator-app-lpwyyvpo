@@ -1,11 +1,7 @@
 <ui-page-layout>
     <img header src="/assets/headers/header-pierogator.svg" />
-    <div>
-        <ui-section-header-atom [isLoading]="true" [sectionName]="'Składniki'" [buttonText]="'Generuj'"/>
-        <ui-textarea-input-molecule [label]="'Ciasto'" [placeholder]="'wpisz, wygeneruj lub zostaw puste'"/>
-        <ui-textarea-input-molecule [label]="'Nadzienie'" [placeholder]="'wpisz, wygeneruj lub zostaw puste'"/>
+        <ui-section-header-molecule [sectionName]="'Pieróg'" [buttonText]="'Generuj'"/>
         <ui-textarea-input-molecule [label]="'Składniki'" [placeholder]="'wpisz, wygeneruj lub zostaw puste'"/>
-    </div>
-        <ui-section-header-atom [sectionName]="'Pieróg'" [buttonText]="'Generuj'"/>
+        <button class="flat-button">Zapisz i przejdź do tworzenia przepisu</button>
 
 </ui-page-layout>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { PageLayoutComponent } from './ui/layouts/page-layout/page-layout.component';
 import { AccordionComponent } from './ui/templates/accordion/accordion.component';
-import { SectionHeaderComponent } from './ui/atoms/section-header/section-header.component';
+import { SectionHeaderComponent } from './ui/molecules/section-header/section-header.component';
 import { TextareaInputComponent } from './ui/molecules/textarea-input/textarea-input.component';
 
 @Component({

@@ -1,9 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { LoaderComponent } from '../loader/loader.component';
+import { LoaderComponent } from '../../atoms/loader/loader.component';
 
 @Component({
-  selector: 'ui-section-header-atom',
+  selector: 'ui-section-header-molecule',
   standalone: true,
   imports: [NgClass, LoaderComponent],
   templateUrl: './section-header.component.html',
