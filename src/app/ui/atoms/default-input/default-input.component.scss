@@ -1,0 +1,12 @@
+@use '../../../../styles/variables' as v;
+
+input {
+    width: 309px;  
+    height: 20px;
+    padding: 16px;
+    background-color: v.$gray-background;
+    border: none;
+    box-shadow:inset 0px 0px 0px 1px v.$gray-light;
+    border-radius: 4px;
+    outline: none;
+}
