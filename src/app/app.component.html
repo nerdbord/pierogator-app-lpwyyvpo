@@ -1,7 +1,4 @@
 <ui-page-layout>
-    <img header src="/assets/headers/header-pierogator.svg" />
-        <ui-section-header-molecule [sectionName]="'Pieróg'" [buttonText]="'Generuj'"/>
-        <ui-textarea-input-molecule [label]="'Składniki'" [placeholder]="'wpisz, wygeneruj lub zostaw puste'"/>
-        <button class="flat-button">Zapisz i przejdź do tworzenia przepisu</button>
-
+    <img header [src]="headerPath()" />
+    <router-outlet />
 </ui-page-layout>
