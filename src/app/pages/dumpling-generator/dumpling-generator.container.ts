@@ -11,7 +11,8 @@ import { GeneratorWorkingModeEnum } from '../../enums';
   styleUrl: './dumpling-generator.container.scss'
 })
 export class DumplingGeneratorComponent {
-  public currentWorkingMode: WritableSignal<GeneratorWorkingModeEnum> = signal(GeneratorWorkingModeEnum.INGREDIENTS);
+  public currentWorkingMode: WritableSignal<GeneratorWorkingModeEnum> =
+    signal(GeneratorWorkingModeEnum.RECIPE);
 
   public readonly GeneratorWorkingModeEnum = GeneratorWorkingModeEnum;
 }

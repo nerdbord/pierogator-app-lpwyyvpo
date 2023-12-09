@@ -1,1 +1,21 @@
-<p>recipe works!</p>
+<ui-section-header-molecule sectionName="Pieróg" [buttonText]="'Zmień'" />
+<img class="dumpling-image" [src]="recipe.imageSrc" alt="dumpling-image" />
+<ui-default-input-atom
+  [isDisabled]="true"
+  [defaultValue]="recipe.name"
+  [label]="'dumpling-name'"
+/>
+<ui-section-header-molecule
+  sectionName="Przepis"
+  [buttonText]="'Generuj'"
+  [isLoading]="true"
+/>
+<ui-textarea-input-molecule
+  [label]="'Uwagi do przepisu'"
+  [placeholder]="'chrupiące pierogi bez pieczenia, bez użycia miksera'"
+/>
+<app-ingredients-accordion [ingredients]="recipe.ingredients" />
+<app-instructions-accordion [instructions]="recipe.instructions" />
+<button class="flat-button" (click)="shareClicked.emit(recipe)">
+  Udostępnij pieroga
+</button>
