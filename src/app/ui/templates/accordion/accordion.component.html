@@ -1,0 +1,17 @@
+<div class="container" [ngClass]="{expanded: isExpanded()}">
+    <div 
+        class="container__header"
+    >
+        <span class="title">Składniki</span>
+        <img 
+            [ngClass]="{expanded: isExpanded()}"
+            src="/assets/icons/expand.svg"
+            (click)="isExpanded.set(!isExpanded())"
+         />
+    </div>
+    @if(isExpanded()) {
+        <div class="container__content">
+            <ng-content></ng-content>
+        </div>
+    }
+</div>

@@ -1,0 +1,12 @@
+<div 
+    class="container"
+    [ngClass]="{'section-right': sectionNameOnRight}"    
+>
+    <div class="container__name">
+        <img src="/assets/icons/dumpling.svg" />
+        <span class="h2-typography">{{ sectionName }}</span>
+    </div>
+    @if(buttonText) {
+    <button class="basic-button">{{ buttonText }}</button>
+    }
+</div>

@@ -1,6 +1,10 @@
 @use '../variables' as v;
 
-@mixin base-button($height, $bg-color, $hover-color, $text-color, $font-weight, $border, $padding) {
+@mixin base-button($height, $bg-color, $hover-color, $text-color, $font-weight, $padding) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: $bg-color;
     color: $text-color;
     height: $height;
@@ -8,7 +12,7 @@
     border-radius: 4px;
     line-height: 16px;
     font-weight: $font-weight;
-    border: $border;
+    border: none;
     padding: $padding;
 
     &:hover {
@@ -17,10 +21,13 @@
 }
 
 .flat-button {
-    @include base-button(48px, v.$dark-green,v.$green, v.$white, 600, none, 16px 38.5px);
+    @include base-button(48px, v.$dark-green,v.$green, v.$white, 600, 16px 38.5px);
     width: 343px;
 }
 
 .basic-button {
-    @include base-button(36px, v.$white, v.$gray-light, v.$dark-green, 500, 1px solid v.$gray, 10px 12px);
+
+    //TODO: Sprawdzić ten przycisk. Ciul wie czemu, pewnie przez renderowanie czcionki, ale ma nieprawidłowy wymiar.
+    @include base-button(36px, v.$white, v.$gray-light, v.$dark-green, 500, 12px 10px);
+    box-shadow:inset 0px 0px 0px 1px v.$gray;
 }

@@ -3,18 +3,19 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LockButtonComponent } from '../../atoms/lock-button/lock-button.component';
+import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ui-textarea-input',
+  selector: 'ui-textarea-input-molecule',
   standalone: true,
-  imports: [LockButtonComponent, ReactiveFormsModule],
+  imports: [LockButtonComponent, ReactiveFormsModule, NgClass],
   templateUrl: './textarea-input.component.html',
   styleUrl: './textarea-input.component.scss'
 })
 export class TextareaInputComponent implements OnInit, OnDestroy {
-  @Input() public label: string = 'Ciasto';
+  @Input({required: true}) public label!: string;
   @Input() public canBeLocked: boolean = false;
-  @Input() public placeholder: string = 'wegańskie ciasto na pszennej mące uniwersalnej';
+  @Input() public placeholder: string = '';
 
   @Output() public formValueChange: EventEmitter<string> = new EventEmitter<string>();
 
