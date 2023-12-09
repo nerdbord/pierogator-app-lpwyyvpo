@@ -1,0 +1,7 @@
+<button 
+class="container"
+(click)="handleButtonClick()"
+[ngClass]="{active: isLocked()}"
+>
+    <img [src]="iconPath()"/>
+</button>

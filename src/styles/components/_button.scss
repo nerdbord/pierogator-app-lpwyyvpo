@@ -1,9 +1,9 @@
 @use '../variables' as v;
 
-@mixin base-button($color, $hover-color, $text-color, $font-weight, $border, $padding) {
-    background-color: $color;
+@mixin base-button($height, $bg-color, $hover-color, $text-color, $font-weight, $border, $padding) {
+    background-color: $bg-color;
     color: $text-color;
-    height: 48px;
+    height: $height;
     cursor: pointer;
     border-radius: 4px;
     line-height: 16px;
@@ -17,9 +17,10 @@
 }
 
 .flat-button {
-    @include base-button(v.$dark-green,v.$green, v.$white, 600, none, 16px 38.5px);
+    @include base-button(48px, v.$dark-green,v.$green, v.$white, 600, none, 16px 38.5px);
+    width: 343px;
 }
 
 .basic-button {
-    @include base-button(v.$white, v.$gray-light, v.$dark-green, 500, 1px solid v.$gray, 10px 12px);
+    @include base-button(36px, v.$white, v.$gray-light, v.$dark-green, 500, 1px solid v.$gray, 10px 12px);
 }
