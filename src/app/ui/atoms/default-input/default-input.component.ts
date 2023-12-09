@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, WritableSignal, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -11,15 +11,16 @@ import { Subscription } from 'rxjs';
   styleUrl: './default-input.component.scss'
 })
 export class DefaultInputComponent implements OnInit, OnDestroy {
- @Input() public label: string = 'Ciasto';
-  @Input() public canBeLocked: boolean = false;
-  @Input() public placeholder: string = 'wegańskie ciasto na pszennej mące uniwersalnej';
+  @Input() public label: string = 'Ciasto';
+
+  @Input() public set isDisabled(value: boolean) {
+    if(value) this.inputControl.disable();
+    else this.inputControl.enable();
+  }
 
   @Output() public formValueChange: EventEmitter<string> = new EventEmitter<string>();
 
-  public textareaControl: FormControl = new FormControl('')
-
-  public isLocked: WritableSignal<boolean> = signal(false);
+  public inputControl: FormControl = new FormControl('')
 
   private _sub$: Subscription = new Subscription();
 
@@ -31,27 +32,10 @@ export class DefaultInputComponent implements OnInit, OnDestroy {
     this._sub$.unsubscribe();  
   }
 
-  public handleTextareaClick(): void {
-    this._updateElementValueIfEmpty();
-  }
-
-  public handleLockButtonClick(isLocked: boolean): void {
-    this._updateElementValueIfEmpty();
-
-    if(isLocked) this.textareaControl.disable();
-    else this.textareaControl.enable()
-
-    this.isLocked.set(isLocked);
-  }
-
-  private _updateElementValueIfEmpty(): void {
-    if(!this.textareaControl.value)
-    this.textareaControl.setValue(this.placeholder);
-  }
-
   private _handleValueChange(): void {
     this._sub$.add(
-      this.textareaControl.valueChanges.subscribe((value: string) => {
+      this.inputControl.valueChanges.subscribe((value: string) => {
+        console.log(value);
         this.formValueChange.emit(value)
       })
     )

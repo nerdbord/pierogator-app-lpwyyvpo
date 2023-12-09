@@ -1,1 +1,12 @@
-<input type="text" />
+<div class="container">
+    @if(!inputControl.disabled) {
+        <label [for]="label">{{ label }}</label>
+    }
+    <input 
+        type="text" 
+        maxlength="40"
+        [disabled]="true"
+        [id]="label"
+        [formControl]="inputControl"
+    />
+</div>
