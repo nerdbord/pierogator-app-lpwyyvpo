@@ -1,1 +1,8 @@
-<p>dumpling-generator works!</p>
+@switch (currentWorkingMode()) {
+    @case (GeneratorWorkingModeEnum.INGREDIENTS) {
+        <dumpling-generator-ingredients />
+    }
+    @case (GeneratorWorkingModeEnum.RECIPE) {
+        <dumpling-generator-recipe />
+    }
+}
