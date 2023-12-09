@@ -33,6 +33,6 @@ jobs:
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
-          args: deploy --prod --dir=dist/pierogator/browser
+          args: deploy --prod --dir=dist/pierogator
         env:
-          NETLIFY_AUTH_TOKEN: {{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_AUTH_TOKEN: nfp_EJjShNbnxYZ4x3BMhbHMZ4zkP8ksTkuze5d3
