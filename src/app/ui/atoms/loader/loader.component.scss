@@ -1,0 +1,31 @@
+@use '../../../../styles/variables' as v;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background-color: v.$gray-background;
+
+    // TODO: Chuj go wie jaki tu ma być czas animacji xD. Na figmie jest 300ms ale to raczej scam
+    // TODO: Przejście między framemami jest tam na 300ms stąd 4x300ms dałem 1200ms
+    &__icon {
+        animation: rotation 1200ms infinite linear;
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+

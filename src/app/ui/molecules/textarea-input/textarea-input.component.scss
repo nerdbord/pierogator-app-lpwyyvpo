@@ -1,0 +1,46 @@
+@use '../../../../styles/variables' as v;
+
+.container {
+    width: 343px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    label {
+        width: fit-content;
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    &__input {
+
+    height: 40px;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+
+    background-color: v.$gray-background;
+    border-radius: 4px;
+    padding: 16px;
+
+    .area {
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+
+        padding: 0;
+
+        &::placeholder {
+            color: v.$gray-dark;
+        }
+
+        &:disabled {
+         color: v.$dark-green;
+        }
+
+    }
+    }
+}
