@@ -1,1 +1,30 @@
-<p>ingredients works!</p>
+<div class="container">
+    <div class="container__ingredients">
+        <ui-section-header-molecule sectionName="Składniki" buttonText="Generuj"/>
+        <ui-textarea-input-molecule 
+            label="Ciasto"
+            placeholder="wpisz, wygeneruj lub zostaw puste"
+            [canBeLocked]="true"
+        />
+        <ui-textarea-input-molecule 
+            label="Nadzienie"
+            placeholder="wpisz, wygeneruj lub zostaw puste"
+            [canBeLocked]="true"
+        />
+        <ui-textarea-input-molecule 
+            label="Składniki"
+            placeholder="wpisz, wygeneruj lub zostaw puste"
+            [canBeLocked]="true"
+        />
+    </div>
+    <div class="container__dumpling">
+        <div class="dumpling-info">
+        <ui-section-header-molecule sectionName="Pieróg" buttonText="Generuj"/>
+         <div class="dumpling-info__img">
+            <img [src]="'/assets/pierof.png'" />
+        </div>
+        <ui-default-input-atom label="Nazwa"/>
+        </div>
+        <button class="flat-button">Zapisz i przejdź do tworzenia przepisu</button>
+    </div>
+</div>

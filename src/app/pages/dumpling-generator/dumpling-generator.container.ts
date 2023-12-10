@@ -90,7 +90,7 @@ const MOCK: DumplingRecipePostBodyInterface = {
 })
 export class DumplingGeneratorComponent {
   public currentWorkingMode: WritableSignal<GeneratorWorkingModeEnum> =
-    signal(GeneratorWorkingModeEnum.RECIPE);
+    signal(GeneratorWorkingModeEnum.INGREDIENTS);
 
   public recipe: WritableSignal<DumplingRecipePostBodyInterface> = signal(MOCK);
   public readonly GeneratorWorkingModeEnum = GeneratorWorkingModeEnum;

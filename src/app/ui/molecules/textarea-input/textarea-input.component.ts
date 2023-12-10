@@ -4,11 +4,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LockButtonComponent } from '../../atoms/lock-button/lock-button.component';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
 @Component({
   selector: 'ui-textarea-input-molecule',
   standalone: true,
-  imports: [LockButtonComponent, ReactiveFormsModule, NgClass],
+  imports: [LockButtonComponent, ReactiveFormsModule, NgClass, TextareaAutosizeDirective],
   templateUrl: './textarea-input.component.html',
   styleUrl: './textarea-input.component.scss'
 })

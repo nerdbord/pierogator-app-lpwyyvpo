@@ -13,7 +13,7 @@
 
     &__input {
 
-    height: 40px;
+    height: fit-content;
 
     display: grid;
     grid-template-columns: auto 1fr;
@@ -33,6 +33,7 @@
         background-color: transparent;
         resize: none;
         outline: none;
+        line-height: 20px;
 
         padding: 0;
 
