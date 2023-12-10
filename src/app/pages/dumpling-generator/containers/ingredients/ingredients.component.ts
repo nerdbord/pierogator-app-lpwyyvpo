@@ -72,12 +72,7 @@ export class IngredientsComponent {
   public generateImage(): void {
     this.isImageLoading.set(true);
     const body: ImageGenerationPostBodyInterface = {
-      prompt: `Proszę o wygenerowanie realistycznego i szczegółowego zdjęcia pieroga.
-        Pieróg powinien znajdować się
-       Pieróg powinien być tradycyjny, polski, z ${this.dumplingDescription().dough}. 
-       Farsz powinien być umieszczony w środku i składać się z ${this.dumplingDescription().filling}. 
-       Pieróg powinien być gotowany, z delikatną, ale jednocześnie sprężystą konsystencją.
-        Pierogi powinny być podane na dużym, płaskim talerzu, w grupie 8-10 sztuk. `,
+      prompt: this._prepareImagePrompt(),
       n: 1,
       size: `${1024}x${1024}`
     }
@@ -86,5 +81,35 @@ export class IngredientsComponent {
       this.isImageLoading.set(false);
       this.dumplingImageUrl.set(res.data.at(0)?.url || '')
     })
+  }
+
+  private _prepareImagePrompt(): string {
+    let prompt = `Cześć, bąź przez chwilę fotografem. 
+      Otrzymałeś zadanie zrobienia zdjęcia pierogom.
+      Pieróg to tradycyjne danie kuchni polskiej, które składa się z ciasta i farszu. 
+      Ciasto jest delikatne, elastyczne i ma jasny, prawie biały kolor. 
+      Jest cienko rozwałkowane i ma kształt półokrągły.
+      Farsz jest umieszczony w środku ciasta. 
+      Może składać się z różnych składników, ale tradycyjny pieróg ma farsz z kapusty i grzybów, albo z mięsa.
+      Farsz jest dobrze przyprawiony, ale nie przesadnie pikantny.
+      Pierogi są zazwyczaj gotowane do momentu, gdy wypłyną na powierzchnię wody, co daje im delikatną, ale jednocześnie sprężystą konsystencję.
+      Na wierzchu mogą być posypane drobno posiekanym koperkiem lub skwarkami.
+      Pierogi są podawane na dużym, płaskim talerzu, często w grupie 8-10 sztuk. 
+      Wyglądają apetycznie i domowo, a nie jak danie z restauracji. 
+      Są to tradycyjne, polskie pierogi, które przypominają domowe gotowanie i polską gościnność.
+      Chce aby to zdjęcie nadawało się do wstawienia na instagram pierożarni, której jestem właścicielem.
+      Zajmujemy się tworzeniem pierogów na kształt tych znanych w polsce.
+      Zdjęcie ma być możliwe szczegółowe, oraz zachęcać do zjedzenia jego pierogów.
+      `
+
+      if(this.dumplingDescription().dough) {
+        prompt += `Ciasto tych pierogów jest ${this.dumplingDescription().dough}.`
+      }
+
+      if(this.dumplingDescription().filling) {
+        prompt += `Farsz użyty w pierogach jest ${this.dumplingDescription().filling}`
+      }
+
+    return prompt
   }
 }
