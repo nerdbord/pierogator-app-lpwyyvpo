@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    &__instructions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.instructions {
+    &__header {
+        font-weight: 700;
+    }
+
+    &__text {
+        font-weight: 400;
+    }
+}
