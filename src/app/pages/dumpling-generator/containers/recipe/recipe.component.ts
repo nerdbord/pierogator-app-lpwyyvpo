@@ -37,6 +37,7 @@ export class RecipeComponent implements OnInit {
   };
   public isLoading: WritableSignal<boolean> = signal(false);
   public dumplingsTips: WritableSignal<string> = signal('');
+  public isRecipeGenerated: WritableSignal<boolean> = signal(false);
 
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
@@ -57,6 +58,10 @@ export class RecipeComponent implements OnInit {
   public handleGenerateClicked(): void {
     this.isLoading.set(true);
 
+    const doughTipsMessage: string = `Zależy mi także na wykorzystaniu tych wskazówek odnośnie ciasta: "${this.generatedDumpling.dough}."`;
+    const fillingTipsMessage: string = `Zależy mi także na wykorzystaniu tych wskazówek odnośnie farszu: "${this.generatedDumpling.filling}."`;
+    const ingredientsTipsMessage: string = `Mam dostępne tylko te składniki: "${this.generatedDumpling.ingredients}."`;
+
     this._openaiApiService.postChatCompletion({
       model: AiModelEnum.GPT_TURBO,
       messages: [
@@ -70,6 +75,9 @@ export class RecipeComponent implements OnInit {
             Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym powyżej.
             Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim.
             Wykorzystaj podane wskazówki: ${this.dumplingsTips()}.
+            ${this.generatedDumpling.dough ? doughTipsMessage : ''}
+            ${this.generatedDumpling.filling ? fillingTipsMessage : ''}
+            ${this.generatedDumpling.ingredients ? ingredientsTipsMessage : ''}
           `
         }
       ]
@@ -84,6 +92,7 @@ export class RecipeComponent implements OnInit {
         const parsedMessage: DumplingRecipesResponseInterface = this._openaiApiService.getParsedMessage(response.choices[0]);
         this.recipe.ingredients = parsedMessage.recipes[0].ingredients;
         this.recipe.instructions = parsedMessage.recipes[0].instructions;
+        this.isRecipeGenerated.set(true);
       })
   }
 }
