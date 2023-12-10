@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, WritableSignal, signal } from '@angular/core';
 import { finalize, retry } from 'rxjs';
 import { SectionHeaderComponent } from '../../../../ui/molecules/section-header/section-header.component';
 import { DefaultInputComponent } from '../../../../ui/atoms/default-input/default-input.component';
@@ -25,21 +25,28 @@ import { GeneratedDumplingInterface } from '../../../../interfaces/generated-dum
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.scss'
 })
-export class RecipeComponent {
-  @Input() public generatedDumpling!: GeneratedDumplingInterface;
-  @Input({ required: true }) public recipe!: DumplingRecipePostBodyInterface;
-  @Output() public recipeChange: EventEmitter<DumplingRecipePostBodyInterface> =
-    new EventEmitter<DumplingRecipePostBodyInterface>();
+export class RecipeComponent implements OnInit {
+  @Input({ required: true }) public generatedDumpling!: GeneratedDumplingInterface;
   @Output() public changeClicked: EventEmitter<never> = new EventEmitter<never>();
-  @Output() public shareClicked: EventEmitter<never> = new EventEmitter<never>();
+  @Output() public shareClicked: EventEmitter<DumplingRecipePostBodyInterface> =
+    new EventEmitter<DumplingRecipePostBodyInterface>();
 
+  public recipe: DumplingRecipePostBodyInterface = {
+    name: '',
+    imageSrc: '',
+  };
   public isLoading: WritableSignal<boolean> = signal(false);
   public dumplingsTips: WritableSignal<string> = signal('');
 
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
-  public handleChangeClicked(): void {
+  public ngOnInit(): void {
     console.log(this.generatedDumpling);
+    this.recipe.name = this.generatedDumpling.name;
+    this.recipe.imageSrc = this.generatedDumpling.imageUrl;
+  }
+
+  public handleChangeClicked(): void {
     this.changeClicked.emit();
   }
 
@@ -77,7 +84,6 @@ export class RecipeComponent {
         const parsedMessage: DumplingRecipesResponseInterface = this._openaiApiService.getParsedMessage(response.choices[0]);
         this.recipe.ingredients = parsedMessage.recipes[0].ingredients;
         this.recipe.instructions = parsedMessage.recipes[0].instructions;
-        this.recipeChange.emit(this.recipe);
       })
   }
 }
