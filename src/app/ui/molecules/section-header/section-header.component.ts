@@ -1,11 +1,11 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LoaderComponent } from '../../atoms/loader/loader.component';
 
 @Component({
   selector: 'ui-section-header-molecule',
   standalone: true,
-  imports: [NgClass, LoaderComponent],
+  imports: [NgClass, LoaderComponent, NgOptimizedImage],
   templateUrl: './section-header.component.html',
   styleUrl: './section-header.component.scss'
 })

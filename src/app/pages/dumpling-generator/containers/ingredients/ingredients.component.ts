@@ -6,14 +6,13 @@ import { OpenAiApiService } from '../../../../services';
 import { AiModelEnum, AiRoleEnum } from '../../../../enums';
 import { ChatCompletionPostBodyInterface, ChatCompletionResponseInterface, ImageGenerationPostBodyInterface, ImageGenerationResponseInterface } from '../../../../interfaces';
 import { DumplingDescriptionInterface } from '../../../../interfaces/dumpling-description.interface';
-import { JsonPipe } from '@angular/common';
 import { GeneratedDumplingInterface } from '../../../../interfaces/generated-dumpling.interface';
 import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'dumpling-generator-ingredients',
   standalone: true,
-  imports: [TextareaInputComponent, SectionHeaderComponent, DefaultInputComponent, JsonPipe],
+  imports: [TextareaInputComponent, SectionHeaderComponent, DefaultInputComponent],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.scss'
 })
@@ -108,7 +107,6 @@ export class IngredientsComponent {
       name: this._openAiApiService.postChatCompletionWithoutSchema(nameBody)
     }).subscribe(({image, name}) => {
       this.dumplingImageUrl.set(image.data.at(0)?.url || '');
-      console.log(JSON.parse(name.choices.at(0)?.message.content as string));
       this.dumplingName.set(JSON.parse(name.choices.at(0)?.message.content as string) || '');
     })
   }

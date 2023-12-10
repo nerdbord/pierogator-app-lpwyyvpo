@@ -15,7 +15,8 @@
     border: none;
     padding: $padding;
 
-    &:hover {
+    &:hover,
+    &:active {
         background-color: $hover-color;
     }
 }
