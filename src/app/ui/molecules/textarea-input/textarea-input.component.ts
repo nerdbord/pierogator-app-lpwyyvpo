@@ -41,22 +41,12 @@ export class TextareaInputComponent implements OnInit, OnDestroy {
     this._sub$.unsubscribe();
   }
 
-  public handleTextareaClick(): void {
-    this._updateElementValueIfEmpty();
-  }
-
   public handleLockButtonClick(isLocked: boolean): void {
-    this._updateElementValueIfEmpty();
 
     if (isLocked) this.textareaControl.disable();
     else this.textareaControl.enable()
 
     this.isLocked.set(isLocked);
-  }
-
-  private _updateElementValueIfEmpty(): void {
-    if (!this.textareaControl.value)
-      this.textareaControl.setValue(this.placeholder);
   }
 
   private _handleValueChange(): void {
