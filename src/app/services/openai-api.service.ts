@@ -31,7 +31,7 @@ export class OpenAiApiService extends BaseApiService {
             url,
             {
                 ...body,
-                prompt: this._forceImageResponseType(RECIPE_AI_RESPONSE_SCHEMA, body.prompt),
+                prompt: this._forceImageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.prompt),
             } as ImageGenerationPostBodyInterface,
             {
                 headers: this.baseHeaders,
@@ -45,7 +45,7 @@ export class OpenAiApiService extends BaseApiService {
      */
     public postChatCompletion(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
         const url: string = `${this._url}/chat/completions`;
-        const messages: ChatMessageInterface[] = this._forceMessageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.messages);
+        const messages: ChatMessageInterface[] = this._forceMessageResponseType(RECIPE_AI_RESPONSE_SCHEMA, body.messages);
 
         return this.httpClient.post<ChatCompletionResponseInterface>(
             url,
@@ -88,8 +88,11 @@ export class OpenAiApiService extends BaseApiService {
      */
     private _forceMessageResponseType(typeDef: unknown, messages: ChatMessageInterface[]): ChatMessageInterface[] {
         const assistantMessage: ChatMessageInterface = {
-            role: AiRoleEnum.ASSISTANT,
-            content: `Use JSON format only with interface like ${JSON.stringify(typeDef)}`
+            role: AiRoleEnum.USER,
+            content: `
+                Force JSON format contains data with interface below: 
+                ${JSON.stringify(typeDef)}.
+            `
         };
 
         return [assistantMessage, ...messages];

@@ -4,6 +4,6 @@ import { DumplingRecipeIngredientInterface } from "./dumpling-recipe-ingredient.
 export interface DumplingRecipePostBodyInterface {
     name: string;
     imageSrc: string;
-    ingredients: Record<IngredientTypeEnum, DumplingRecipeIngredientInterface[]>;
-    instructions: Record<InstructionTypeEnum, string[]>;
+    ingredients?: Record<IngredientTypeEnum, DumplingRecipeIngredientInterface[]>;
+    instructions?: Record<InstructionTypeEnum, string[]>;
 }

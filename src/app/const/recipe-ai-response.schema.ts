@@ -4,7 +4,6 @@
 export const RECIPE_AI_RESPONSE_SCHEMA = {
     recipes: [
         {
-            name: 'string',
             ingredients: {
                 dough: [
                     {
