@@ -103,6 +103,16 @@ export class DumplingGeneratorComponent {
     name: ''
   });
 
+  public recipe: WritableSignal<DumplingRecipePostBodyInterface> = signal(MOCK);
+  public generatedDumpling: WritableSignal<GeneratedDumplingInterface> = signal({
+    dough: '',
+    ingredients: '',
+    filling: '',
+    imageUrl: '',
+    name: ''
+  });
+
+  public recipe: WritableSignal<DumplingRecipePostBodyInterface> = signal(MOCK);
   public readonly GeneratorWorkingModeEnum = GeneratorWorkingModeEnum;
 
   constructor(
