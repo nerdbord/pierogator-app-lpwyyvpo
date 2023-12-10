@@ -87,27 +87,20 @@ export class IngredientsComponent {
     let prompt = `Cześć, bąź przez chwilę fotografem. 
       Otrzymałeś zadanie zrobienia zdjęcia pierogom.
       Pieróg to tradycyjne danie kuchni polskiej, które składa się z ciasta i farszu. 
-      Ciasto jest delikatne, elastyczne i ma jasny, prawie biały kolor. 
+      Ciasto jest delikatne i elastyczne. 
       Jest cienko rozwałkowane i ma kształt półokrągły.
       Farsz jest umieszczony w środku ciasta. 
-      Może składać się z różnych składników, ale tradycyjny pieróg ma farsz z kapusty i grzybów, albo z mięsa.
-      Farsz jest dobrze przyprawiony, ale nie przesadnie pikantny.
-      Pierogi są zazwyczaj gotowane do momentu, gdy wypłyną na powierzchnię wody, co daje im delikatną, ale jednocześnie sprężystą konsystencję.
-      Na wierzchu mogą być posypane drobno posiekanym koperkiem lub skwarkami.
-      Pierogi są podawane na dużym, płaskim talerzu, często w grupie 8-10 sztuk. 
-      Wyglądają apetycznie i domowo, a nie jak danie z restauracji. 
-      Są to tradycyjne, polskie pierogi, które przypominają domowe gotowanie i polską gościnność.
-      Chce aby to zdjęcie nadawało się do wstawienia na instagram pierożarni, której jestem właścicielem.
-      Zajmujemy się tworzeniem pierogów na kształt tych znanych w polsce.
-      Zdjęcie ma być możliwe szczegółowe, oraz zachęcać do zjedzenia jego pierogów.
+      Może składać się z różnych składników.
+      Pierogi są delikatne, ale jednocześnie mają sprężystą konsystencję.
+      Pierogi są podawane na dużym, płaskim talerzu. 
       `
 
       if(this.dumplingDescription().dough) {
-        prompt += `Ciasto tych pierogów jest ${this.dumplingDescription().dough}.`
+        prompt += `Uwzględnij to w wyglądzie ciasta ${this.dumplingDescription().dough}.`
       }
 
       if(this.dumplingDescription().filling) {
-        prompt += `Farsz użyty w pierogach jest ${this.dumplingDescription().filling}`
+        prompt += `Na obrazku uwzględnij nadzienie, ${this.dumplingDescription().filling}`
       }
 
     return prompt
