@@ -6,7 +6,7 @@
       (buttonClicked)="handleChangeClicked()"
     />
     @if (recipe.imageSrc) {
-    <img class="dumpling-image" [src]="recipe.imageSrc" alt="dumpling-image" />
+      <img class="dumpling-image" [src]="recipe.imageSrc" alt="dumpling-image" />
     }
     <ui-default-input-atom
       [isDisabled]="true"
@@ -27,9 +27,17 @@
       [placeholder]="'chrupiące pierogi bez pieczenia, bez użycia miksera'"
       (formValueChange)="handleTipsChanged($event)"
     />
-    <app-ingredients-accordion [ingredients]="recipe.ingredients" />
-    <app-instructions-accordion [instructions]="recipe.instructions" />
-    <app-serving-accordion [instructions]="recipe.instructions" />
+
+    <div class="accordions-container">
+      @if (recipe.ingredients) {
+        <app-ingredients-accordion [ingredients]="recipe.ingredients" />
+      } 
+      @if (recipe.instructions) {
+        <app-instructions-accordion [instructions]="recipe.instructions" />
+        <app-serving-accordion [instructions]="recipe.instructions" />
+      }
+    </div>
+
     <button class="flat-button" (click)="shareClicked.emit()">
       Udostępnij pieroga
     </button>

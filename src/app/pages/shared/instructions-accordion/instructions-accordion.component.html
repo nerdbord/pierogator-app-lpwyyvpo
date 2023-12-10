@@ -1,26 +1,34 @@
-<ui-accordion-template [label]="'Przepis'">
-  <div>
-    <h2>Ciasto:</h2>
-    @for (instruction of instructions[InstructionTypeEnum.DOUGH_PREPARATION];
-    let index = $index; track index) {
-    <p>{{ index + 1 }}. {{ instruction }}</p>
-    }
-  </div>
+<ui-accordion-template [label]="'Przygotowanie'">
+  <div class="container">
+    <div class="container__instructions">
+      <span class="instructions__header">Ciasto:</span>
+      @for (instruction of instructions[InstructionTypeEnum.DOUGH_PREPARATION]; let index = $index; track index) {
+        <span class="instructions__text">
+          {{ index + 1 }}. {{ instruction }}
+        </span>
+      }
+    </div>
 
-  <div>
-    <h2>Farsz</h2>
-    @for (instruction of instructions[InstructionTypeEnum.FILLING_PREPARATION];
-    let index = $index; track index) {
-    <p>{{ index + 1 }}. {{ instruction }}</p>
-    }
-  </div>
+    <div class="container__instructions">
+      <span class="instructions__header">Farsz</span>
+      @for (instruction of instructions[InstructionTypeEnum.FILLING_PREPARATION]; 
+        let index = $index; 
+        track index) {
+        <span class="instructions__text">
+          {{ index + 1 }}. {{ instruction }}
+        </span>
+      }
+    </div>
 
-  <div>
-    <h2>Formowanie i gotowanie pierogów:</h2>
-    @for (instruction of
-    instructions[InstructionTypeEnum.FORMING_AND_COOKING_DUMPLINGS]; let index =
-    $index; track index) {
-    <p>{{ index + 1 }}. {{ instruction }}</p>
-    }
+    <div class="container__instructions">
+      <span class="instructions__header">Formowanie i gotowanie pierogów:</span>
+      @for (instruction of instructions[InstructionTypeEnum.FORMING_AND_COOKING_DUMPLINGS]; 
+        let index = $index; 
+        track index) {
+        <span class="instructions__text">
+          {{ index + 1 }}. {{ instruction }}
+        </span>
+      }
+    </div>
   </div>
 </ui-accordion-template>
