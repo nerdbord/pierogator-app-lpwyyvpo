@@ -42,7 +42,6 @@ export class RecipeComponent implements OnInit {
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
   public ngOnInit(): void {
-    console.log(this.generatedDumpling);
     this.recipe.name = this.generatedDumpling.name;
     this.recipe.imageSrc = this.generatedDumpling.imageUrl;
   }
@@ -60,7 +59,7 @@ export class RecipeComponent implements OnInit {
 
     const doughTipsMessage: string = `Zależy mi także na wykorzystaniu tych wskazówek odnośnie ciasta: "${this.generatedDumpling.dough}."`;
     const fillingTipsMessage: string = `Zależy mi także na wykorzystaniu tych wskazówek odnośnie farszu: "${this.generatedDumpling.filling}."`;
-    const ingredientsTipsMessage: string = `Mam dostępne tylko te składniki: "${this.generatedDumpling.ingredients}."`;
+    const ingredientsTipsMessage: string = `Uwzględnij proszę wszystkie podane składniki: "${this.generatedDumpling.ingredients}."`;
 
     this._openaiApiService.postChatCompletion({
       model: AiModelEnum.GPT_TURBO,
@@ -68,17 +67,21 @@ export class RecipeComponent implements OnInit {
         {
           role: AiRoleEnum.USER,
           content: `
-            Cześć, pracuj przez chwilę jako API do generowania przepisów na pierogi.
-            Wygeneruj mi proszę informacje o pierogu, który nie istnieje, 
-            jednak jest możliwy do stworzenia w realnym świecie.
-            Może być to zarówno w formie słodkiej jak i słonej.
-            Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym powyżej.
-            Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim.
+          Cześć, pracuj przez chwilę jako kucharz, który opisuje swoje oryginalne pierogi gościom restauracji. 
+            Opisz mi proszę tego pieroga, powiedz krótko o jego cieście i sposobie jego przygotowania, 
+            farszu i sposobie jego przygotowania,składnikach oraz opisz sposób podania.
+            Niech ten pieróg będzie czymś, czego jeszcze nie jedli.
+            Pieróg może być zarówno w formie słodkiej jak i słonej.
+            Przy informowaniu o składnikach nie dodawaj treści w stylu "Składniki potrzebne do ciasta to:". 
+            Wylistuj po przecinku składniki potrzebne do stworzenia ciasta i farszu.
+            Dodatkowo nie dodawaj informacji w stylu "Krótki opis" do swojej odpowiedzi.
+            Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym wyżej. 
+            Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim
             Wykorzystaj podane wskazówki: ${this.dumplingsTips()}.
             ${this.generatedDumpling.dough ? doughTipsMessage : ''}
             ${this.generatedDumpling.filling ? fillingTipsMessage : ''}
             ${this.generatedDumpling.ingredients ? ingredientsTipsMessage : ''}
-          `
+          `,
         }
       ]
     })

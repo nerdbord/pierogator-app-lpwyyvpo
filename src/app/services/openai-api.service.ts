@@ -35,7 +35,7 @@ export class OpenAiApiService extends BaseApiService {
                 prompt: this._forceImageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.prompt),
             } as ImageGenerationPostBodyInterface,
             {
-                headers: this.baseHeaders,
+                headers: this.gptBaseHeaders,
             });
     }
 
@@ -55,16 +55,16 @@ export class OpenAiApiService extends BaseApiService {
                 messages,
             } as ChatCompletionPostBodyInterface,
             {
-                headers: this.baseHeaders
+                headers: this.gptBaseHeaders
             }
         );
     }
 
-     /**
-     * Creates a model response for the given chat conversation
-     * @param body 
-     * @returns 
-     */
+    /**
+    * Creates a model response for the given chat conversation
+    * @param body 
+    * @returns 
+    */
     public postChatCompletionForDumplingDesc(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
         const url: string = `${this._url}/chat/completions`;
         const messages: ChatMessageInterface[] = this._forceMessageResponseType(DUMPLING_DESCRITPION_SCHEMA, body.messages);
@@ -76,7 +76,7 @@ export class OpenAiApiService extends BaseApiService {
                 messages,
             } as ChatCompletionPostBodyInterface,
             {
-                headers: this.baseHeaders
+                headers: this.gptBaseHeaders
             }
         );
     }
