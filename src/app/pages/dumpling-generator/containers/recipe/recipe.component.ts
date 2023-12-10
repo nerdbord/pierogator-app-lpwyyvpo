@@ -42,7 +42,6 @@ export class RecipeComponent implements OnInit {
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
   public ngOnInit(): void {
-    console.log(this.generatedDumpling);
     this.recipe.name = this.generatedDumpling.name;
     this.recipe.imageSrc = this.generatedDumpling.imageUrl;
   }

@@ -19,9 +19,9 @@ export const RECIPE_AI_RESPONSE_SCHEMA = {
                 ]
             },
             instructions: {
-                dough_preparation: ['Dough preparation instruction'],
-                filling_preparation: ['Filling preparation instruction'],
-                forming_and_cooking_dumplings: ['Forming and cooking dumplings instruction'],
+                dough_preparation: ['Recipe in steps of dough preparation instruction'],
+                filling_preparation: ['Recipe in steps of filling preparation instruction'],
+                forming_and_cooking_dumplings: ['Recipe in steps of forming and cooking dumplings instruction'],
                 serving: ['Serving instructions'],
             }
         }
