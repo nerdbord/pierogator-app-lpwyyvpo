@@ -94,7 +94,6 @@ export class RecipeComponent implements OnInit {
       )
       .subscribe((response: ChatCompletionResponseInterface) => {
         const parsedMessage: DumplingRecipesResponseInterface = this._openaiApiService.getParsedMessage(response.choices[0]);
-        console.log(parsedMessage);
         this.recipe.ingredients = parsedMessage.recipes[0].ingredients;
         this.recipe.instructions = parsedMessage.recipes[0].instructions;
         this.isRecipeGenerated.set(true);
