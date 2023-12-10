@@ -27,8 +27,7 @@
 }
 
 .basic-button {
-
-    //TODO: Sprawdzić ten przycisk. Ciul wie czemu, pewnie przez renderowanie czcionki, ale ma nieprawidłowy wymiar.
     @include base-button(36px, v.$white, v.$gray-light, v.$dark-green, 500, 12px 10px);
     box-shadow:inset 0px 0px 0px 1px v.$gray;
+    width: 80px;
 }

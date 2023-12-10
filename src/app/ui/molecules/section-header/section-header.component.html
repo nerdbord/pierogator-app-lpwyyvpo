@@ -8,7 +8,11 @@
     @if(isLoading) {
     <ui-loader-atom />
     }
-    <button class="basic-button" (click)="buttonClicked.emit()">
+    <button 
+      class="basic-button"
+      (click)="buttonClicked.emit()"
+      [ngStyle]="{width: buttonWidth}"
+      >
       {{ buttonText }}
     </button>
   </div>
