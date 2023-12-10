@@ -1,8 +1,10 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ui-dumpling-item-molecule',
   standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './dumpling-item.component.html',
   styleUrl: './dumpling-item.component.scss'
 })

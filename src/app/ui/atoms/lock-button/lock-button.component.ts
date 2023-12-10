@@ -1,10 +1,10 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Input, Output, Signal, WritableSignal, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'ui-lock-button-atom',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgOptimizedImage],
   templateUrl: './lock-button.component.html',
   styleUrl: './lock-button.component.scss'
 })
