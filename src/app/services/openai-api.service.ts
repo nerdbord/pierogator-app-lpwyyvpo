@@ -59,6 +59,24 @@ export class OpenAiApiService extends BaseApiService {
             }
         );
     }
+    
+    /**
+     * Creates a model response for the given chat conversation
+     * @param body 
+     * @returns 
+     */
+    public postChatCompletionWithoutSchema(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
+        const url: string = `${this._url}/chat/completions`;
+        return this.httpClient.post<ChatCompletionResponseInterface>(
+            url,
+            {
+                ...body,
+            } as ChatCompletionPostBodyInterface,
+            {
+                headers: this.gptBaseHeaders
+            }
+        );
+    }
 
     /**
     * Creates a model response for the given chat conversation

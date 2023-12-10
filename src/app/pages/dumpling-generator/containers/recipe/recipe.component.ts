@@ -81,6 +81,7 @@ export class RecipeComponent implements OnInit {
             ${this.generatedDumpling.dough ? doughTipsMessage : ''}
             ${this.generatedDumpling.filling ? fillingTipsMessage : ''}
             ${this.generatedDumpling.ingredients ? ingredientsTipsMessage : ''}
+            Wartość którą zwrócisz ma wpasowywać się w format podany wcześniej, oraz zawsze możliwa do przeprasowania przy użyciu JSON.parse
           `,
         }
       ]
