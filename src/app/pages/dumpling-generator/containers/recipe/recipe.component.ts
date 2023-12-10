@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
-import { catchError, finalize, retry } from 'rxjs';
+import { finalize, retry } from 'rxjs';
 import { SectionHeaderComponent } from '../../../../ui/molecules/section-header/section-header.component';
 import { DefaultInputComponent } from '../../../../ui/atoms/default-input/default-input.component';
 import { ChatCompletionResponseInterface, DumplingRecipePostBodyInterface, DumplingRecipesResponseInterface } from '../../../../interfaces';
@@ -9,7 +9,6 @@ import { InstructionsAccordionComponent } from '../../../shared/instructions-acc
 import { ServingAccordionComponent } from '../../../shared/serving-accordion/serving-accordion.component';
 import { OpenAiApiService } from '../../../../services';
 import { AiModelEnum, AiRoleEnum } from '../../../../enums';
-import { HttpRequest, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'dumpling-generator-recipe',
