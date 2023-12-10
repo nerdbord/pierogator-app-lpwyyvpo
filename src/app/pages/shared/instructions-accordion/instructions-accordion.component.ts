@@ -11,4 +11,5 @@ import { InstructionTypeEnum } from '../../../enums';
 })
 export class InstructionsAccordionComponent {
   @Input({ required: true }) public instructions!: Record<InstructionTypeEnum, string[]>;
+  public InstructionTypeEnum = InstructionTypeEnum;
 }

@@ -12,4 +12,5 @@ import { IngredientTypeEnum } from '../../../enums';
 })
 export class IngredientsAccordionComponent {
   @Input({ required: true }) public ingredients!: Record<IngredientTypeEnum, DumplingRecipeIngredientInterface[]>;
+  public IngredientTypeEnum = IngredientTypeEnum;
 }

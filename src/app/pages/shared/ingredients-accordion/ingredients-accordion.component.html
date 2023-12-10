@@ -1,3 +1,17 @@
 <ui-accordion-template [label]="'Składniki'">
-  ingredients
+  <div>
+    <h2>Ciasto</h2>
+    @for (ingredient of ingredients[IngredientTypeEnum.DOUGH]; let index =
+    $index; track index) {
+    <p>{{ index + 1 }}. {{ ingredient.quantity }} {{ ingredient.name }}</p>
+    }
+  </div>
+
+  <div>
+    <h2>Farsz</h2>
+    @for (ingredient of ingredients[IngredientTypeEnum.FILLING]; let index =
+    $index; track index) {
+    <p>{{ index + 1 }}. {{ ingredient.quantity }} {{ ingredient.name }}</p>
+    }
+  </div>
 </ui-accordion-template>

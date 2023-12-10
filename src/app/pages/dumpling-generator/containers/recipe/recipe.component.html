@@ -25,11 +25,12 @@
     <ui-textarea-input-molecule
       [label]="'Uwagi do przepisu'"
       [placeholder]="'chrupiące pierogi bez pieczenia, bez użycia miksera'"
+      (formValueChange)="handleTipsChanged($event)"
     />
     <app-ingredients-accordion [ingredients]="recipe.ingredients" />
     <app-instructions-accordion [instructions]="recipe.instructions" />
     <app-serving-accordion [instructions]="recipe.instructions" />
-    <button class="flat-button" (click)="shareClicked.emit(recipe)">
+    <button class="flat-button" (click)="shareClicked.emit()">
       Udostępnij pieroga
     </button>
   </div>

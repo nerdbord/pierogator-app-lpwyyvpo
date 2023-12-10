@@ -17,8 +17,8 @@ import { RoutesEnum } from './routes';
 })
 export class AppComponent implements OnInit {
   public currentHeader: WritableSignal<string> = signal('header-pierogator');
-  
-  public headerPath: Signal<string> = computed(() => `assets/headers/${this.currentHeader()}.svg`)  
+
+  public headerPath: Signal<string> = computed(() => `assets/headers/${this.currentHeader()}.svg`)
 
   private _routeChange$ = inject(Router).events.pipe((takeUntilDestroyed()))
 
@@ -28,10 +28,12 @@ export class AppComponent implements OnInit {
 
   private _handleNavigationChange(): void {
     this._routeChange$.subscribe((routeChange: Event) => {
-      if(routeChange instanceof NavigationEnd) {
+      if (routeChange instanceof NavigationEnd) {
         const updatedHeader = HEADERS_URL_MAP.get(routeChange.url.slice(1) as unknown as RoutesEnum);
-        
-        if(updatedHeader) this.currentHeader.set(updatedHeader)
+
+        if (updatedHeader) {
+          this.currentHeader.set(updatedHeader);
+        }
       }
     })
   }

@@ -1,4 +1,6 @@
+import { AiRoleEnum } from "../enums";
+
 export interface ChatMessageInterface {
-    role: 'system' | 'user' | 'assistant';
+    role: AiRoleEnum;
     content: string;
 }

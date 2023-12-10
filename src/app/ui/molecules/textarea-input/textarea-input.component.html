@@ -1,22 +1,19 @@
 <div class="container">
-    <label class="h3-typography" [for]="label">{{ label }}</label>
-    <div 
-        class="container__input"
-        [ngClass]="{'is-locked': isLocked()}"
+  <label class="h3-typography" [for]="label">{{ label }}</label>
+  <div class="container__input" [ngClass]="{ 'is-locked': isLocked() }">
+    @if(canBeLocked) {
+    <ui-lock-button-atom
+      [lockState]="isLocked()"
+      (buttonClick)="handleLockButtonClick($event)"
+    />
+    }
+    <textarea
+      [id]="label"
+      class="area"
+      [placeholder]="placeholder"
+      [formControl]="textareaControl"
+      (click)="handleTextareaClick()"
     >
-        @if(canBeLocked) {
-            <ui-lock-button-atom
-            [lockState]="isLocked()"
-            (buttonClick)="handleLockButtonClick($event)"
-            />
-        }
-        <textarea 
-            [id]="label"
-            class="area"
-            [placeholder]="placeholder"
-            [formControl]="textareaControl"
-            (click)="handleTextareaClick()"
-        >
-        </textarea>
-    </div>
+    </textarea>
+  </div>
 </div>
