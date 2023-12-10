@@ -14,6 +14,13 @@ import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.di
   styleUrl: './textarea-input.component.scss'
 })
 export class TextareaInputComponent implements OnInit, OnDestroy {
+  @Input() public set value(value: string){
+    if(!this.isLocked() && this.textareaControl.value !== value) {
+      console.log('change');
+      this.textareaControl.setValue(value)
+    }
+  }
+
   @Input({ required: true }) public label!: string;
   @Input() public canBeLocked: boolean = false;
   @Input() public placeholder: string = '';

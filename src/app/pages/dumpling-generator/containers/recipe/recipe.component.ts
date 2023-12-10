@@ -10,6 +10,7 @@ import { InstructionsAccordionComponent } from '../../../shared/instructions-acc
 import { ServingAccordionComponent } from '../../../shared/serving-accordion/serving-accordion.component';
 import { OpenAiApiService } from '../../../../services';
 import { AiModelEnum, AiRoleEnum } from '../../../../enums';
+import { GeneratedDumplingInterface } from '../../../../interfaces/generated-dumpling.interface';
 
 @Component({
   selector: 'dumpling-generator-recipe',
@@ -26,6 +27,7 @@ import { AiModelEnum, AiRoleEnum } from '../../../../enums';
   styleUrl: './recipe.component.scss'
 })
 export class RecipeComponent {
+  @Input() public generatedDumpling!: GeneratedDumplingInterface;
   @Input({ required: true }) public recipe!: DumplingRecipePostBodyInterface;
   @Output() public recipeChange: EventEmitter<DumplingRecipePostBodyInterface> =
     new EventEmitter<DumplingRecipePostBodyInterface>();
@@ -38,6 +40,7 @@ export class RecipeComponent {
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
   public handleChangeClicked(): void {
+    console.log(this.generatedDumpling);
     this.changeClicked.emit();
   }
 

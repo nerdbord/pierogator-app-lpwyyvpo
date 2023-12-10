@@ -4,6 +4,7 @@ import { IngredientsComponent } from './containers/ingredients/ingredients.compo
 import { GeneratorWorkingModeEnum } from '../../enums';
 import { DumplingRecipePostBodyInterface } from '../../interfaces';
 import { PierogatorApiService } from '../../services';
+import { GeneratedDumplingInterface } from '../../interfaces/generated-dumpling.interface';
 
 const MOCK: DumplingRecipePostBodyInterface = {
   "name": "DUMPLINGS_NAME",
@@ -93,12 +94,25 @@ export class DumplingGeneratorComponent {
     signal(GeneratorWorkingModeEnum.INGREDIENTS);
 
   public recipe: WritableSignal<DumplingRecipePostBodyInterface> = signal(MOCK);
+  public generatedDumpling: WritableSignal<GeneratedDumplingInterface> = signal({
+    dough: '',
+    ingredients: '',
+    filling: '',
+    imageUrl: '',
+    name: ''
+  });
+
   public readonly GeneratorWorkingModeEnum = GeneratorWorkingModeEnum;
 
   constructor(private readonly _pierogatorApiService: PierogatorApiService) { }
 
   public handleChangeButtonClicked(): void {
     this.currentWorkingMode.set(GeneratorWorkingModeEnum.INGREDIENTS);
+  }
+
+  public handleDumplingSave(dumpling: GeneratedDumplingInterface): void {
+    this.generatedDumpling.set(dumpling);
+    this.currentWorkingMode.set(GeneratorWorkingModeEnum.RECIPE);
   }
 
   public handleShareButtonClicked(): void {
