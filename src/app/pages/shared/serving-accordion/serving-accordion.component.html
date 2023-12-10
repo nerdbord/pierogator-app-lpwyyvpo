@@ -1,6 +1,7 @@
 <ui-accordion-template [label]="'Podawanie'">
-  @for (instruction of instructions[InstructionTypeEnum.SERVING]; track $index)
-  {
-  <p>{{ instruction }}</p>
-  }
+  <div class="container">
+    @for (instruction of instructions[InstructionTypeEnum.SERVING]; track $index) {
+      <span>{{ instruction }}</span>
+    }
+  </div>
 </ui-accordion-template>

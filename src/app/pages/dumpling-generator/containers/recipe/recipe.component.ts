@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
-import { finalize } from 'rxjs';
-
+import { finalize, retry } from 'rxjs';
 import { SectionHeaderComponent } from '../../../../ui/molecules/section-header/section-header.component';
 import { DefaultInputComponent } from '../../../../ui/atoms/default-input/default-input.component';
 import { ChatCompletionResponseInterface, DumplingRecipePostBodyInterface, DumplingRecipesResponseInterface } from '../../../../interfaces';
@@ -53,13 +52,22 @@ export class RecipeComponent {
       messages: [
         {
           role: AiRoleEnum.USER,
-          content: `Wygeneruj przepis na piergogi. ${this.dumplingsTips()}`,
+          content: `
+            Zachowuj się jak API.
+            Odpowiedz wyłącznie z interfejsem powyżej.
+            Podaj wyniki w języku polskim.
+            Wygeneruj przepis na pierogi. 
+            Wskazówki: ${this.dumplingsTips()}.
+          `,
         }
       ]
     })
-      .pipe(finalize(() => {
-        this.isLoading.set(false);
-      }))
+      .pipe(
+        retry(3),
+        finalize(() => {
+          this.isLoading.set(false);
+        })
+      )
       .subscribe((response: ChatCompletionResponseInterface) => {
         const parsedMessage: DumplingRecipesResponseInterface = this._openaiApiService.getParsedMessage(response.choices[0]);
         this.recipe.ingredients = parsedMessage.recipes[0].ingredients;

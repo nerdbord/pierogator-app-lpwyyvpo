@@ -9,6 +9,13 @@
     }
 }
 
+.accordions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 8px;
+}
+
 .dumpling-section {
     gap: 16px;
 }
