@@ -1,1 +1,21 @@
-<p>dumplings-list works!</p>
+<div class="container">
+  <div class="my-dumplings">
+    <ui-section-header-molecule [sectionName]="'Moje pierogi'" [buttonText]="'Nowy pieróg'"
+      (buttonClicked)="goToNewDumpling()" />
+    <div>
+      @for (item of (myDumplings$ | async)?.recipes; track item._id) {
+      <ui-dumpling-item-molecule [name]="item.name" [image]="item.imageSrc" [includeMangeButtons]="true"
+        (openClick)="goToDumpling(item._id)" (deleteClick)="deleteDumpling(item._id)" />
+      }
+    </div>
+  </div>
+
+  <div class="all-dumplings">
+    <ui-section-header-molecule [sectionName]="'Pierogarnia'" (buttonClicked)="goToNewDumpling()" />
+    <div class="dumplings-list">
+      @for (item of (allDumplings$ | async)?.recipes; track item._id) {
+      <ui-dumpling-item-molecule [name]="item.name" [image]="item.imageSrc" (click)="goToDumpling(item._id)" />
+      }
+    </div>
+  </div>
+</div>
