@@ -1,7 +1,5 @@
-import { RoutesEnum } from "../routes";
-
-export const HEADERS_URL_MAP: Map<RoutesEnum, string> = new Map<RoutesEnum, string>([
-    [RoutesEnum.DUMPLINGS_LIST, 'header-pierogarnia'],
-    [RoutesEnum.DUMPLING_DETAILS, 'header-pierogarnia'],
-    [RoutesEnum.DUMPLING_GENERATOR, 'header-pierogator']
+export const HEADERS_URL_MAP: Map<string, string> = new Map<string, string>([
+    ['list', 'header-pierogarnia'],
+    ['details', 'header-pierogarnia'],
+    ['generator', 'header-pierogator']
 ])

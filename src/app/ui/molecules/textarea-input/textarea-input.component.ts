@@ -4,15 +4,23 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LockButtonComponent } from '../../atoms/lock-button/lock-button.component';
+import { TextareaAutosizeDirective } from '../../directives/textarea-autosize.directive';
 
 @Component({
   selector: 'ui-textarea-input-molecule',
   standalone: true,
-  imports: [LockButtonComponent, ReactiveFormsModule, NgClass],
+  imports: [LockButtonComponent, ReactiveFormsModule, NgClass, TextareaAutosizeDirective],
   templateUrl: './textarea-input.component.html',
   styleUrl: './textarea-input.component.scss'
 })
 export class TextareaInputComponent implements OnInit, OnDestroy {
+  @Input() public set value(value: string){
+    if(!this.isLocked() && this.textareaControl.value !== value) {
+      console.log('change');
+      this.textareaControl.setValue(value)
+    }
+  }
+
   @Input({ required: true }) public label!: string;
   @Input() public canBeLocked: boolean = false;
   @Input() public placeholder: string = '';
@@ -33,22 +41,12 @@ export class TextareaInputComponent implements OnInit, OnDestroy {
     this._sub$.unsubscribe();
   }
 
-  public handleTextareaClick(): void {
-    this._updateElementValueIfEmpty();
-  }
-
   public handleLockButtonClick(isLocked: boolean): void {
-    this._updateElementValueIfEmpty();
 
     if (isLocked) this.textareaControl.disable();
     else this.textareaControl.enable()
 
     this.isLocked.set(isLocked);
-  }
-
-  private _updateElementValueIfEmpty(): void {
-    if (!this.textareaControl.value)
-      this.textareaControl.setValue(this.placeholder);
   }
 
   private _handleValueChange(): void {

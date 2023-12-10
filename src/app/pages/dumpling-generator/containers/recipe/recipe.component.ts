@@ -9,6 +9,7 @@ import { InstructionsAccordionComponent } from '../../../shared/instructions-acc
 import { ServingAccordionComponent } from '../../../shared/serving-accordion/serving-accordion.component';
 import { OpenAiApiService } from '../../../../services';
 import { AiModelEnum, AiRoleEnum } from '../../../../enums';
+import { GeneratedDumplingInterface } from '../../../../interfaces/generated-dumpling.interface';
 
 @Component({
   selector: 'dumpling-generator-recipe',
@@ -25,6 +26,7 @@ import { AiModelEnum, AiRoleEnum } from '../../../../enums';
   styleUrl: './recipe.component.scss'
 })
 export class RecipeComponent {
+  @Input() public generatedDumpling!: GeneratedDumplingInterface;
   @Input({ required: true }) public recipe!: DumplingRecipePostBodyInterface;
   @Output() public recipeChange: EventEmitter<DumplingRecipePostBodyInterface> =
     new EventEmitter<DumplingRecipePostBodyInterface>();
@@ -37,6 +39,7 @@ export class RecipeComponent {
   constructor(private readonly _openaiApiService: OpenAiApiService) { }
 
   public handleChangeClicked(): void {
+    console.log(this.generatedDumpling);
     this.changeClicked.emit();
   }
 
@@ -53,12 +56,14 @@ export class RecipeComponent {
         {
           role: AiRoleEnum.USER,
           content: `
-            Zachowuj się jak API.
-            Odpowiedz wyłącznie z interfejsem powyżej.
-            Podaj wyniki w języku polskim.
-            Wygeneruj przepis na pierogi. 
-            Wskazówki: ${this.dumplingsTips()}.
-          `,
+            Cześć, pracuj przez chwilę jako API do generowania przepisów na pierogi.
+            Wygeneruj mi proszę informacje o pierogu, który nie istnieje, 
+            jednak jest możliwy do stworzenia w realnym świecie.
+            Może być to zarówno w formie słodkiej jak i słonej.
+            Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym powyżej.
+            Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim.
+            Wykorzystaj podane wskazówki: ${this.dumplingsTips()}.
+          `
         }
       ]
     })

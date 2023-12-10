@@ -12,6 +12,7 @@ import { BaseApiService } from "./base-api.service";
 import { AiRoleEnum } from "../enums";
 import { IMAGE_AI_RESPONSE_SCHEMA } from "../const/image-ai-response.schema";
 import { RECIPE_AI_RESPONSE_SCHEMA } from '../const/recipe-ai-response.schema';
+import { DUMPLING_DESCRITPION_SCHEMA } from "../const";
 
 @Injectable({
     providedIn: 'root',
@@ -46,6 +47,27 @@ export class OpenAiApiService extends BaseApiService {
     public postChatCompletion(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
         const url: string = `${this._url}/chat/completions`;
         const messages: ChatMessageInterface[] = this._forceMessageResponseType(RECIPE_AI_RESPONSE_SCHEMA, body.messages);
+
+        return this.httpClient.post<ChatCompletionResponseInterface>(
+            url,
+            {
+                ...body,
+                messages,
+            } as ChatCompletionPostBodyInterface,
+            {
+                headers: this.baseHeaders
+            }
+        );
+    }
+
+     /**
+     * Creates a model response for the given chat conversation
+     * @param body 
+     * @returns 
+     */
+    public postChatCompletionForDumplingDesc(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
+        const url: string = `${this._url}/chat/completions`;
+        const messages: ChatMessageInterface[] = this._forceMessageResponseType(DUMPLING_DESCRITPION_SCHEMA, body.messages);
 
         return this.httpClient.post<ChatCompletionResponseInterface>(
             url,
