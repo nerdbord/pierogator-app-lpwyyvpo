@@ -1,0 +1,26 @@
+<ui-accordion-template [label]="'Przepis'">
+  <div>
+    <h2>Ciasto:</h2>
+    @for (instruction of instructions[InstructionTypeEnum.DOUGH_PREPARATION];
+    let index = $index; track index) {
+    <p>{{ index + 1 }}. {{ instruction }}</p>
+    }
+  </div>
+
+  <div>
+    <h2>Farsz</h2>
+    @for (instruction of instructions[InstructionTypeEnum.FILLING_PREPARATION];
+    let index = $index; track index) {
+    <p>{{ index + 1 }}. {{ instruction }}</p>
+    }
+  </div>
+
+  <div>
+    <h2>Formowanie i gotowanie pierogów:</h2>
+    @for (instruction of
+    instructions[InstructionTypeEnum.FORMING_AND_COOKING_DUMPLINGS]; let index =
+    $index; track index) {
+    <p>{{ index + 1 }}. {{ instruction }}</p>
+    }
+  </div>
+</ui-accordion-template>

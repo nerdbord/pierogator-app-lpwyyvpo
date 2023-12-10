@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, WritableSignal, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { LockButtonComponent } from '../../atoms/lock-button/lock-button.component';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'ui-textarea-input-molecule',
@@ -13,7 +13,7 @@ import { NgClass } from '@angular/common';
   styleUrl: './textarea-input.component.scss'
 })
 export class TextareaInputComponent implements OnInit, OnDestroy {
-  @Input({required: true}) public label!: string;
+  @Input({ required: true }) public label!: string;
   @Input() public canBeLocked: boolean = false;
   @Input() public placeholder: string = '';
 
@@ -30,7 +30,7 @@ export class TextareaInputComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._sub$.unsubscribe();  
+    this._sub$.unsubscribe();
   }
 
   public handleTextareaClick(): void {
@@ -40,15 +40,15 @@ export class TextareaInputComponent implements OnInit, OnDestroy {
   public handleLockButtonClick(isLocked: boolean): void {
     this._updateElementValueIfEmpty();
 
-    if(isLocked) this.textareaControl.disable();
+    if (isLocked) this.textareaControl.disable();
     else this.textareaControl.enable()
 
     this.isLocked.set(isLocked);
   }
 
   private _updateElementValueIfEmpty(): void {
-    if(!this.textareaControl.value)
-    this.textareaControl.setValue(this.placeholder);
+    if (!this.textareaControl.value)
+      this.textareaControl.setValue(this.placeholder);
   }
 
   private _handleValueChange(): void {

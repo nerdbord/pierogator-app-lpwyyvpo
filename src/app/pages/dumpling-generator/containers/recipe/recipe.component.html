@@ -1,1 +1,37 @@
-<p>recipe works!</p>
+<div class="container">
+  <div class="container__section dumpling-section">
+    <ui-section-header-molecule
+      sectionName="Pieróg"
+      [buttonText]="'Zmień'"
+      (buttonClicked)="handleChangeClicked()"
+    />
+    @if (recipe.imageSrc) {
+    <img class="dumpling-image" [src]="recipe.imageSrc" alt="dumpling-image" />
+    }
+    <ui-default-input-atom
+      [isDisabled]="true"
+      [defaultValue]="recipe.name"
+      [label]="'dumpling-name'"
+    />
+  </div>
+
+  <div class="container__section recipe-section">
+    <ui-section-header-molecule
+      sectionName="Przepis"
+      [buttonText]="'Generuj'"
+      [isLoading]="isLoading()"
+      (buttonClicked)="handleGenerateClicked()"
+    />
+    <ui-textarea-input-molecule
+      [label]="'Uwagi do przepisu'"
+      [placeholder]="'chrupiące pierogi bez pieczenia, bez użycia miksera'"
+      (formValueChange)="handleTipsChanged($event)"
+    />
+    <app-ingredients-accordion [ingredients]="recipe.ingredients" />
+    <app-instructions-accordion [instructions]="recipe.instructions" />
+    <app-serving-accordion [instructions]="recipe.instructions" />
+    <button class="flat-button" (click)="shareClicked.emit()">
+      Udostępnij pieroga
+    </button>
+  </div>
+</div>

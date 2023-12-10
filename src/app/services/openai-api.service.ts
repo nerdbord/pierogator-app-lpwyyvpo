@@ -1,12 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import {
-    CharCompletionPostBodyInterface,
+    ChatCompletionPostBodyInterface,
     ImageGenerationPostBodyInterface,
     ChatCompletionResponseInterface,
     ImageGenerationResponseInterface,
+    ChatMessageInterface,
+    ChatCompletionChoicesInterface,
 } from "../interfaces";
 import { BaseApiService } from "./base-api.service";
+import { AiRoleEnum } from "../enums";
+import { IMAGE_AI_RESPONSE_SCHEMA } from "../const/image-ai-response.schema";
+import { RECIPE_AI_RESPONSE_SCHEMA } from '../const/recipe-ai-response.schema';
 
 @Injectable({
     providedIn: 'root',
@@ -22,7 +27,15 @@ export class OpenAiApiService extends BaseApiService {
     public postImageGeneration(body: ImageGenerationPostBodyInterface): Observable<ImageGenerationResponseInterface> {
         const url: string = `${this._url}/images/generations`;
 
-        return this.httpClient.post<ImageGenerationResponseInterface>(url, body, { headers: this.baseHeaders });
+        return this.httpClient.post<ImageGenerationResponseInterface>(
+            url,
+            {
+                ...body,
+                prompt: this._forceImageResponseType(RECIPE_AI_RESPONSE_SCHEMA, body.prompt),
+            } as ImageGenerationPostBodyInterface,
+            {
+                headers: this.baseHeaders,
+            });
     }
 
     /**
@@ -30,9 +43,55 @@ export class OpenAiApiService extends BaseApiService {
      * @param body 
      * @returns 
      */
-    public postChatCompletion(body: CharCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
+    public postChatCompletion(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
         const url: string = `${this._url}/chat/completions`;
+        const messages: ChatMessageInterface[] = this._forceMessageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.messages);
 
-        return this.httpClient.post<ChatCompletionResponseInterface>(url, body, { headers: this.baseHeaders });
+        return this.httpClient.post<ChatCompletionResponseInterface>(
+            url,
+            {
+                ...body,
+                messages,
+            } as ChatCompletionPostBodyInterface,
+            {
+                headers: this.baseHeaders
+            }
+        );
+    }
+
+    /**
+     * Parse AI message to JS object
+     * @param choice choice object from AI response
+     * @returns parsed object of <T> type
+     */
+    public getParsedMessage<T>(choice: ChatCompletionChoicesInterface): T {
+        return JSON.parse(choice.message.content);
+    }
+
+    /**
+     * Forces OpenAI to generate image with interface provided in <typeDef> definition
+     * @param typeDef response type definition
+     * @param prompt user input
+     * @returns prompt with forced response type
+     */
+    private _forceImageResponseType(typeDef: unknown, prompt: string): string {
+        const assistantPrompt: string = `Use JSON format only with interface like ${JSON.stringify(typeDef)}. `;
+
+        return `${assistantPrompt} ${prompt}`;
+    }
+
+    /**
+     * Forces OpenAI to answer message with interface provided by <typeDef> definition
+     * @param typeDef response type definition
+     * @param messages messages from user
+     * @returns array of messages with forced response type
+     */
+    private _forceMessageResponseType(typeDef: unknown, messages: ChatMessageInterface[]): ChatMessageInterface[] {
+        const assistantMessage: ChatMessageInterface = {
+            role: AiRoleEnum.ASSISTANT,
+            content: `Use JSON format only with interface like ${JSON.stringify(typeDef)}`
+        };
+
+        return [assistantMessage, ...messages];
     }
 }

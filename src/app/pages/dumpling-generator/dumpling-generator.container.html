@@ -1,8 +1,10 @@
-@switch (currentWorkingMode()) {
-    @case (GeneratorWorkingModeEnum.INGREDIENTS) {
-        <dumpling-generator-ingredients />
-    }
-    @case (GeneratorWorkingModeEnum.RECIPE) {
-        <dumpling-generator-recipe />
-    }
-}
+@switch (currentWorkingMode()) { @case (GeneratorWorkingModeEnum.INGREDIENTS) {
+<dumpling-generator-ingredients />
+} @case (GeneratorWorkingModeEnum.RECIPE) {
+<dumpling-generator-recipe
+  [recipe]="recipe()"
+  (recipeChange)="recipe.set($event)"
+  (changeClicked)="handleChangeButtonClicked()"
+  (shareClicked)="handleShareButtonClicked()"
+/>
+} }

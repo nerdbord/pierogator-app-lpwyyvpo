@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -11,10 +11,14 @@ import { Subscription } from 'rxjs';
   styleUrl: './default-input.component.scss'
 })
 export class DefaultInputComponent implements OnInit, OnDestroy {
-  @Input({required: true}) public label!: string;
+  @Input({ required: true }) public label!: string;
+
+  @Input() public set defaultValue(value: string) {
+    this.inputControl.setValue(value);
+  }
 
   @Input() public set isDisabled(value: boolean) {
-    if(value) this.inputControl.disable();
+    if (value) this.inputControl.disable();
     else this.inputControl.enable();
   }
 
@@ -29,7 +33,7 @@ export class DefaultInputComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._sub$.unsubscribe();  
+    this._sub$.unsubscribe();
   }
 
   private _handleValueChange(): void {
