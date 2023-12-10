@@ -1,8 +1,11 @@
+@use '../../../../styles/variables' as v;
+
 .container {
     max-width: 162px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    color: v.$dark-green;
 
     &__image {
         object-fit: cover;

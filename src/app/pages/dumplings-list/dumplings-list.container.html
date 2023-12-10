@@ -1,6 +1,6 @@
 <div class="container">
   <div class="my-dumplings">
-    <ui-section-header-molecule [sectionName]="'Moje pierogi'" [buttonText]="'Nowy pieróg'"
+    <ui-section-header-molecule [sectionName]="'Moje pierogi'" [buttonText]="'Nowy pieróg'" [buttonWidth]="'112px'"
       (buttonClicked)="goToNewDumpling()" />
     <div>
       @for (item of (myDumplings$ | async)?.recipes; track item._id) {
