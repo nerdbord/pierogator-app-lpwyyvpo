@@ -60,11 +60,11 @@ export class OpenAiApiService extends BaseApiService {
         );
     }
 
-     /**
-     * Creates a model response for the given chat conversation
-     * @param body 
-     * @returns 
-     */
+    /**
+    * Creates a model response for the given chat conversation
+    * @param body 
+    * @returns 
+    */
     public postChatCompletionForDumplingDesc(body: ChatCompletionPostBodyInterface): Observable<ChatCompletionResponseInterface> {
         const url: string = `${this._url}/chat/completions`;
         const messages: ChatMessageInterface[] = this._forceMessageResponseType(DUMPLING_DESCRITPION_SCHEMA, body.messages);

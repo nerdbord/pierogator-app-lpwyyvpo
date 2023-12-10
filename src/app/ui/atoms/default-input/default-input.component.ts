@@ -39,7 +39,6 @@ export class DefaultInputComponent implements OnInit, OnDestroy {
   private _handleValueChange(): void {
     this._sub$.add(
       this.inputControl.valueChanges.subscribe((value: string) => {
-        console.log(value);
         this.formValueChange.emit(value)
       })
     )
