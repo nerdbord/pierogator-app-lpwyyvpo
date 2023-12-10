@@ -73,7 +73,7 @@ export class RecipeComponent implements OnInit {
             Niech ten pieróg będzie czymś, czego jeszcze nie jedli.
             Pieróg może być zarówno w formie słodkiej jak i słonej.
             Przy informowaniu o składnikach nie dodawaj treści w stylu "Składniki potrzebne do ciasta to:". 
-            Wylistuj po przecinku składniki potrzebne do stworzenia ciasta i farszu.
+            Wylistuj składniki potrzebne do stworzenia ciasta i farszu wraz z potrzebną ich ilością.
             Dodatkowo nie dodawaj informacji w stylu "Krótki opis" do swojej odpowiedzi.
             Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym wyżej. 
             Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim
@@ -94,6 +94,7 @@ export class RecipeComponent implements OnInit {
       )
       .subscribe((response: ChatCompletionResponseInterface) => {
         const parsedMessage: DumplingRecipesResponseInterface = this._openaiApiService.getParsedMessage(response.choices[0]);
+        console.log(parsedMessage);
         this.recipe.ingredients = parsedMessage.recipes[0].ingredients;
         this.recipe.instructions = parsedMessage.recipes[0].instructions;
         this.isRecipeGenerated.set(true);

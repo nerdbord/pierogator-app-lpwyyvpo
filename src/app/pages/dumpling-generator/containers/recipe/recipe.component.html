@@ -40,7 +40,7 @@
     </div>
 
     @if (isRecipeGenerated()) {
-      <button class="flat-button" (click)="shareClicked.emit()">
+      <button class="flat-button" (click)="shareClicked.emit(recipe)">
         Udostępnij pieroga
       </button>
     }
