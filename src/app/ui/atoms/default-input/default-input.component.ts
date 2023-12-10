@@ -14,6 +14,7 @@ export class DefaultInputComponent implements OnInit, OnDestroy {
   @Input({ required: true }) public label!: string;
 
   @Input() public set defaultValue(value: string) {
+    if(value !== this.inputControl.value)
     this.inputControl.setValue(value);
   }
 

@@ -26,5 +26,7 @@
 
 .dumpling-image {
     border-radius: 4px;
-    width: 100%;
+    min-width: 343px;
+    max-height: 233px;
+    object-fit: cover;
 }

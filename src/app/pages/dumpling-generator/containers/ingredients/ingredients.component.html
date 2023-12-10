@@ -35,16 +35,20 @@
          sectionName="Pieróg"
          buttonText="Generuj"
          [isLoading]="isImageLoading()"
-         (buttonClicked)="generateImage()"
+         (buttonClicked)="generateImageAndName()"
          />
          @if(dumplingImageUrl()) {
          <div class="dumpling-info__img">
-            <img [src]="dumplingImageUrl()"/>
+            <img [src]="dumplingImageUrl()" (load)="isImageLoading.set(false)" [hidden]="isImageLoading()"/>
         </div>
-        <ui-default-input-atom label="Nazwa" (formValueChange)="this.dumplingName.set($event)"/>
+        <ui-default-input-atom 
+            label="Nazwa"
+            [hidden]="isImageLoading()"
+            [defaultValue]="dumplingName()"
+            (formValueChange)="dumplingName.set($event)"/>
         }
         </div>
-        @if(dumplingImageUrl()) {
+        @if(dumplingImageUrl() && !isImageLoading()) {
         <button class="flat-button" (click)="handleDumplingSave()">Zapisz i przejdź do tworzenia przepisu</button>
         }
     </div>
