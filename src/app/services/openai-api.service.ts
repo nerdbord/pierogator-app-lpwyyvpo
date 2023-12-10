@@ -35,7 +35,7 @@ export class OpenAiApiService extends BaseApiService {
                 prompt: this._forceImageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.prompt),
             } as ImageGenerationPostBodyInterface,
             {
-                headers: this.baseHeaders,
+                headers: this.gptBaseHeaders,
             });
     }
 
@@ -55,7 +55,7 @@ export class OpenAiApiService extends BaseApiService {
                 messages,
             } as ChatCompletionPostBodyInterface,
             {
-                headers: this.baseHeaders
+                headers: this.gptBaseHeaders
             }
         );
     }
@@ -76,7 +76,7 @@ export class OpenAiApiService extends BaseApiService {
                 messages,
             } as ChatCompletionPostBodyInterface,
             {
-                headers: this.baseHeaders
+                headers: this.gptBaseHeaders
             }
         );
     }

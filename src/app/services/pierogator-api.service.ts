@@ -17,7 +17,7 @@ export class PierogatorApiService extends BaseApiService {
     public postDumplingRecipes(body: DumplingRecipePostBodyInterface): Observable<void> {
         const url: string = `${this._url}/dumpling-recipes`;
 
-        return this.httpClient.post<void>(url, body, { headers: this.baseHeaders });
+        return this.httpClient.post<void>(url, body, { headers: this.apiBaseHeaders });
     }
 
     /**
@@ -27,7 +27,7 @@ export class PierogatorApiService extends BaseApiService {
     public getDumplingRecipes(): Observable<DumplingRecipesResponseInterface> {
         const url: string = `${this._url}/dumpling-recipes`;
 
-        return this.httpClient.get<DumplingRecipesResponseInterface>(url, { headers: this.baseHeaders });
+        return this.httpClient.get<DumplingRecipesResponseInterface>(url, { headers: this.apiBaseHeaders });
     }
 
     /**
@@ -37,7 +37,7 @@ export class PierogatorApiService extends BaseApiService {
     public getMyDumplingRecipes(): Observable<DumplingRecipesResponseInterface> {
         const url: string = `${this._url}/dumpling-recipes/me`;
 
-        return this.httpClient.get<DumplingRecipesResponseInterface>(url, { headers: this.baseHeaders });
+        return this.httpClient.get<DumplingRecipesResponseInterface>(url, { headers: this.apiBaseHeaders });
     }
 
     /**
@@ -48,7 +48,7 @@ export class PierogatorApiService extends BaseApiService {
     public getDumplingRecipeById(id: string): Observable<DumplingRecipeInterface> {
         const url: string = `${this._url}/dumpling-recipes/${id}`;
 
-        return this.httpClient.get<DumplingRecipeInterface>(url, { headers: this.baseHeaders });
+        return this.httpClient.get<DumplingRecipeInterface>(url, { headers: this.apiBaseHeaders });
     }
 
     /**
@@ -58,6 +58,6 @@ export class PierogatorApiService extends BaseApiService {
     public deleteDumplingRecipeById(id: string): Observable<void> {
         const url: string = `${this._url}/dumpling-recipes/${id}`;
 
-        return this.httpClient.delete<void>(url, { headers: this.baseHeaders });
+        return this.httpClient.delete<void>(url, { headers: this.apiBaseHeaders });
     }
 }
