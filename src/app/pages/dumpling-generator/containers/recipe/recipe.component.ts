@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
-import { finalize, retry } from 'rxjs';
+import { catchError, finalize, retry } from 'rxjs';
 import { SectionHeaderComponent } from '../../../../ui/molecules/section-header/section-header.component';
 import { DefaultInputComponent } from '../../../../ui/atoms/default-input/default-input.component';
 import { ChatCompletionResponseInterface, DumplingRecipePostBodyInterface, DumplingRecipesResponseInterface } from '../../../../interfaces';
@@ -9,6 +9,7 @@ import { InstructionsAccordionComponent } from '../../../shared/instructions-acc
 import { ServingAccordionComponent } from '../../../shared/serving-accordion/serving-accordion.component';
 import { OpenAiApiService } from '../../../../services';
 import { AiModelEnum, AiRoleEnum } from '../../../../enums';
+import { HttpRequest, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'dumpling-generator-recipe',
@@ -53,12 +54,14 @@ export class RecipeComponent {
         {
           role: AiRoleEnum.USER,
           content: `
-            Zachowuj się jak API.
-            Odpowiedz wyłącznie z interfejsem powyżej.
-            Podaj wyniki w języku polskim.
-            Wygeneruj przepis na pierogi. 
-            Wskazówki: ${this.dumplingsTips()}.
-          `,
+            Cześć, pracuj przez chwilę jako API do generowania przepisów na pierogi.
+            Wygeneruj mi proszę informacje o pierogu, który nie istnieje, 
+            jednak jest możliwy do stworzenia w realnym świecie.
+            Może być to zarówno w formie słodkiej jak i słonej.
+            Zależy mi, aby wiadomość była tylko i wyłącznie w formacie podanym powyżej.
+            Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim.
+            Wykorzystaj podane wskazówki: ${this.dumplingsTips()}.
+          `
         }
       ]
     })

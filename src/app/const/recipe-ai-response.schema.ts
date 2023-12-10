@@ -7,22 +7,22 @@ export const RECIPE_AI_RESPONSE_SCHEMA = {
             ingredients: {
                 dough: [
                     {
-                        name: 'string',
-                        quantity: 'string',
+                        name: 'ingredient name',
+                        quantity: 'Ingredient quantity',
                     },
                 ],
                 filling: [
                     {
-                        name: 'string',
-                        quantity: 'string',
+                        name: 'ingredient name',
+                        quantity: 'Ingredient quantity',
                     }
                 ]
             },
             instructions: {
-                dough_preparation: ['string'],
-                filling_preparation: ['string'],
-                forming_and_cooking_dumplings: ['string'],
-                serving: ['string'],
+                dough_preparation: ['Dough preparation instruction'],
+                filling_preparation: ['Filling preparation instruction'],
+                forming_and_cooking_dumplings: ['Forming and cooking dumplings instruction'],
+                serving: ['Serving instructions'],
             }
         }
     ]
