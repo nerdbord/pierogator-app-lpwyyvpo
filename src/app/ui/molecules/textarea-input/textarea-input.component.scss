@@ -14,14 +14,18 @@
     &__input {
         height: fit-content;
 
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 12px;
-        box-shadow: inset 0px 0px 0px 1px v.$gray-light;
+        box-shadow: inset 0 0 0 1px v.$gray-light;
 
         background-color: v.$gray-background;
         border-radius: 4px;
         padding: 16px;
+
+
+        &.locked-allow {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 12px;
+        }
 
         &.is-locked {
             box-shadow: none;
@@ -32,6 +36,7 @@
             background-color: transparent;
             resize: none;
             outline: none;
+            width: 100%;
             line-height: 20px;
 
             padding: 0;
@@ -42,10 +47,6 @@
 
             &:disabled {
                 color: v.$dark-green;
-            }
-
-            &.empty-area {
-                height: 34px !important;
             }
         }
     }

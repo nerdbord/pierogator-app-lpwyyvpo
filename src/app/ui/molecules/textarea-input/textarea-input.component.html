@@ -1,6 +1,8 @@
 <div class="container">
   <label class="h3-typography" [for]="label">{{ label }}</label>
-  <div class="container__input" [ngClass]="{ 'is-locked': isLocked() }">
+  <div
+    class="container__input"
+    [ngClass]="{ 'is-locked': isLocked(), 'locked-allow': canBeLocked }">
     @if(canBeLocked) {
     <ui-lock-button-atom
       [lockState]="isLocked()"
@@ -11,7 +13,7 @@
       autosize
       [id]="label"
       class="area"
-      [class.empty-area]="!textareaControl.value"    
+      [class.empty-area]="!textareaControl.value"
       [placeholder]="placeholder"
       [formControl]="textareaControl"
     >
