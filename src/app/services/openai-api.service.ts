@@ -32,7 +32,7 @@ export class OpenAiApiService extends BaseApiService {
             url,
             {
                 ...body,
-                prompt: this._forceImageResponseType(IMAGE_AI_RESPONSE_SCHEMA, body.prompt),
+                prompt: body.prompt,
             } as ImageGenerationPostBodyInterface,
             {
                 headers: this.gptBaseHeaders,
