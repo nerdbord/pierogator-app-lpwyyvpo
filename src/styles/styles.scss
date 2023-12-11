@@ -5,9 +5,11 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     line-height: 20px;
+    height: 100%;
 
     color: #002902;
     user-select: none;
+    overflow-scrolling: touch;
 
     display: flex;
     justify-content: center;
