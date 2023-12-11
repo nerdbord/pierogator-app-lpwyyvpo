@@ -41,7 +41,7 @@ export class IngredientsComponent {
   public dumplingImageUrl: WritableSignal<string> = signal('');
 
   private _openAiApiService: OpenAiApiService = inject(OpenAiApiService);
-  
+
   public handleDumplingSave(): void {
     this.dumplingSaved.emit({
       ...this.dumplingDescription(),
@@ -51,14 +51,14 @@ export class IngredientsComponent {
   }
 
   public generateIngredients(): void {
-  this.areIngredientsGenerating.set(true);
+    this.areIngredientsGenerating.set(true);
 
     const body: ChatCompletionPostBodyInterface = {
       model: AiModelEnum.GPT_TURBO,
       messages: [
         {
           role: AiRoleEnum.USER,
-           content: `Cześć, pracuj przez chwilę jako kucharz, który opisuje swoje oryginalne pierogi gościom restauracji. 
+          content: `Cześć, pracuj przez chwilę jako kucharz, który opisuje swoje oryginalne pierogi gościom restauracji. 
             Opisz mi proszę tego pieroga, powiedz krótko o jego cieście, farszu oraz składnikach.
             Niech ten pieró będzie czymś, czego jeszcze nie jedli.
             Pieróg może być zarówno w formie słodkiej jak i słonej.
@@ -69,7 +69,7 @@ export class IngredientsComponent {
             Bez żadnego innego tekstu. Oraz niech odpowiedź będzie zawsze w języku polskim.
             Wartość którą zwrócisz ma wpasowywać się w format podany wcześniej, oraz być zawsze możliwa do przeprasowania przy użyciu JSON.parse
             `
-      
+
         }
       ]
     }
@@ -105,7 +105,7 @@ export class IngredientsComponent {
     forkJoin({
       image: this._openAiApiService.postImageGeneration(imageBody),
       name: this._openAiApiService.postChatCompletionWithoutSchema(nameBody)
-    }).subscribe(({image, name}) => {
+    }).subscribe(({ image, name }) => {
       this.dumplingImageUrl.set(image.data.at(0)?.url || '');
       this.dumplingName.set(JSON.parse(name.choices.at(0)?.message.content as string) || '');
     })
@@ -123,13 +123,13 @@ export class IngredientsComponent {
       Pierogi są podawane na dużym, płaskim talerzu. 
       `
 
-      if(this.dumplingDescription().dough) {
-        prompt += `Uwzględnij to w wyglądzie ciasta ${this.dumplingDescription().dough}.`
-      }
+    if (this.dumplingDescription().dough) {
+      prompt += `Uwzględnij to w wyglądzie ciasta ${this.dumplingDescription().dough}.`
+    }
 
-      if(this.dumplingDescription().filling) {
-        prompt += `Na obrazku uwzględnij nadzienie, ${this.dumplingDescription().filling}`
-      }
+    if (this.dumplingDescription().filling) {
+      prompt += `Na obrazku uwzględnij nadzienie, ${this.dumplingDescription().filling}`
+    }
 
     return prompt
   }
