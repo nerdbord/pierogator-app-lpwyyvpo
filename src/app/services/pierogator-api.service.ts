@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BaseApiService } from "./base-api.service";
-import { DumplingRecipeInterface, DumplingRecipePostBodyInterface, DumplingRecipesResponseInterface } from "../interfaces";
+import { DumplingRecipeInterface, DumplingRecipePostBodyInterface, DumplingRecipesByIdResponseInterface, DumplingRecipesResponseInterface } from "../interfaces";
 
 @Injectable({
     providedIn: 'root',
@@ -34,10 +34,10 @@ export class PierogatorApiService extends BaseApiService {
      * Find dumpling recipes added by me
      * @returns dumpling recipes
      */
-    public getMyDumplingRecipes(): Observable<DumplingRecipesResponseInterface> {
+    public getMyDumplingRecipes(): Observable<DumplingRecipeInterface[]> {
         const url: string = `${this._url}/dumpling-recipes/me`;
 
-        return this.httpClient.get<DumplingRecipesResponseInterface>(url, { headers: this.apiBaseHeaders });
+        return this.httpClient.get<DumplingRecipeInterface[]>(url, { headers: this.apiBaseHeaders });
     }
 
     /**
@@ -45,10 +45,10 @@ export class PierogatorApiService extends BaseApiService {
      * @param id dumpling recipe ID
      * @returns 
      */
-    public getDumplingRecipeById(id: string): Observable<DumplingRecipeInterface> {
+    public getDumplingRecipeById(id: string): Observable<DumplingRecipesByIdResponseInterface> {
         const url: string = `${this._url}/dumpling-recipes/${id}`;
 
-        return this.httpClient.get<DumplingRecipeInterface>(url, { headers: this.apiBaseHeaders });
+        return this.httpClient.get<DumplingRecipesByIdResponseInterface>(url, { headers: this.apiBaseHeaders });
     }
 
     /**

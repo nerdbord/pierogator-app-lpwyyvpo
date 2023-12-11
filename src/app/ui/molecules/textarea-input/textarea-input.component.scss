@@ -12,39 +12,38 @@
     }
 
     &__input {
+        height: fit-content;
 
-    height: fit-content;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        box-shadow: inset 0px 0px 0px 1px v.$gray-light;
 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
-    box-shadow:inset 0px 0px 0px 1px v.$gray-light;
+        background-color: v.$gray-background;
+        border-radius: 4px;
+        padding: 16px;
 
-    background-color: v.$gray-background;
-    border-radius: 4px;
-    padding: 16px;
-
-    &.is-locked {
-        box-shadow: none;
-    }
-
-    .area {
-        border: none;
-        background-color: transparent;
-        resize: none;
-        outline: none;
-        line-height: 20px;
-
-        padding: 0;
-
-        &::placeholder {
-            color: v.$gray-dark;
+        &.is-locked {
+            box-shadow: none;
         }
 
-        &:disabled {
-         color: v.$dark-green;
-        }
+        .area {
+            border: none;
+            background-color: transparent;
+            resize: none;
+            outline: none;
+            line-height: 20px;
 
-    }
+            padding: 0;
+
+            &::placeholder {
+                color: v.$gray-dark;
+            }
+
+            &:disabled {
+                color: v.$dark-green;
+            }
+
+        }
     }
 }

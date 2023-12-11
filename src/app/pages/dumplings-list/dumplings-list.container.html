@@ -3,10 +3,12 @@
     <ui-section-header-molecule [sectionName]="'Moje pierogi'" [buttonText]="'Nowy pieróg'" [buttonWidth]="'112px'"
       (buttonClicked)="goToNewDumpling()" />
     <div>
-      @for (item of (myDumplings$ | async)?.recipes; track item._id) {
-      <ui-dumpling-item-molecule [name]="item.name" [image]="item.imageSrc" [includeMangeButtons]="true"
-        (openClick)="goToDumpling(item._id)" (deleteClick)="deleteDumpling(item._id)" />
-      }
+      <div class="dumplings-list">
+        @for (item of (myDumplings$ | async); track item._id) {
+          <ui-dumpling-item-molecule [name]="item.name" [image]="item.imageSrc" [includeMangeButtons]="true"
+          (openClick)="goToDumpling(item._id)" (deleteClick)="deleteDumpling(item._id)" />
+        }
+      </div>
     </div>
   </div>
 

@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.accordions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 8px;
+}
+
+.dumpling-section {
+    gap: 16px;
+}
+
+.recipe-section {
+    gap: 24px;
+}
+
+.dumpling-image {
+    border-radius: 4px;
+    min-width: 343px;
+    max-height: 233px;
+    object-fit: cover;
+}

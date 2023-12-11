@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   standalone: true
 })
 export class TextareaAutosizeDirective {
- @HostListener('input', ['$event.target'])
+  @HostListener('input', ['$event.target'])
   onInput(textArea: HTMLTextAreaElement): void {
     this.adjust(textArea);
   }
@@ -20,7 +20,7 @@ export class TextareaAutosizeDirective {
   adjust(textArea?: HTMLTextAreaElement): void {
     textArea = textArea || this.element.nativeElement;
 
-    if(textArea) {
+    if (textArea) {
       textArea.style.overflow = 'hidden';
       textArea.style.height = 'auto';
       textArea.style.height = textArea.scrollHeight + 'px';

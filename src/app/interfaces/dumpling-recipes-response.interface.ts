@@ -13,3 +13,7 @@ export interface DumplingRecipeInterface {
 export interface DumplingRecipesResponseInterface {
     recipes: DumplingRecipeInterface[];
 }
+
+export interface DumplingRecipesByIdResponseInterface {
+    recipe: DumplingRecipeInterface;
+}

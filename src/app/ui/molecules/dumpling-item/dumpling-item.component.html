@@ -3,8 +3,8 @@
   <span class="container__name">{{ name }}</span>
   @if(includeMangeButtons) {
   <div class="container__buttons">
-    <button class="basic-button" [ngStyle]="{width: '73px'}">Otwórz</button>
-    <button class="basic-button" [ngStyle]="{width: '60px'}">Usuń</button>
+    <button class="basic-button" [ngStyle]="{width: '73px'}" (click)="openClick.emit()">Otwórz</button>
+    <button class="basic-button" [ngStyle]="{width: '60px'}" (click)="deleteClick.emit()">Usuń</button>
   </div>
   }
 </div>

@@ -1,1 +1,36 @@
-<p>dumpling-details works!</p>
+<div class="container">
+    <div class="container__section dumpling-section">
+        <ui-section-header-molecule 
+            sectionName="Pieróg"
+            buttonText="Wróć"
+            buttonWidth="61px"
+            [sectionNameOnRight]="true"
+            (buttonClicked)="handleBackClicked()"
+        />
+        @if (recipe.imageSrc) {
+            <img class="dumpling-image" [src]="recipe.imageSrc" alt="dumpling-image" />
+          }
+        <ui-default-input-atom
+          [isDisabled]="true"
+          [defaultValue]="recipe.name"
+          [label]="'dumpling-name'"
+        />
+        <ui-section-header-molecule 
+            sectionName="Przepis"
+            [sectionNameOnRight]="true"
+        />
+    </div>
+
+    <div class="container__section recipe-section">
+        @if (recipe) {
+            <div class="accordions-container">
+                @if (recipe.ingredients) {
+                    <app-ingredients-accordion [ingredients]="recipe.ingredients" />
+                }
+                @if (recipe.instructions) {
+                    <app-instructions-accordion [instructions]="recipe.instructions" />
+                    <app-serving-accordion [instructions]="recipe.instructions" />
+                }
+            </div>
+        }
+</div>

@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { PierogatorApiService } from '../../services';
 import { SectionHeaderComponent } from "../../ui/molecules/section-header/section-header.component";
 import { DumplingItemComponent } from "../../ui/molecules/dumpling-item/dumpling-item.component";
-import { DumplingRecipesResponseInterface } from '../../interfaces';
+import { DumplingRecipeInterface } from '../../interfaces';
 import { RoutesEnum } from '../../routes';
 
 @Component({
@@ -22,7 +22,7 @@ export class DumplingsListComponent {
   // BehaviourSubject that emits null when we want to refresh the list of dumplings 
   private _myDumplings$: BehaviorSubject<null> = new BehaviorSubject<null>(null)
 
-  public myDumplings$: Observable<DumplingRecipesResponseInterface> = this._myDumplings$.pipe(
+  public myDumplings$: Observable<DumplingRecipeInterface[]> = this._myDumplings$.pipe(
     switchMap(() => this.pierogatorApi.getMyDumplingRecipes())
   )
 
@@ -32,9 +32,9 @@ export class DumplingsListComponent {
 
   public deleteDumpling(dumplingId: string): void {
     this.pierogatorApi.deleteDumplingRecipeById(dumplingId)
-    .subscribe(() => {
-      this._myDumplings$.next(null)
-    })
+      .subscribe(() => {
+        this._myDumplings$.next(null)
+      })
   }
 
   public async goToDumpling(dumplingId: string): Promise<void> {
