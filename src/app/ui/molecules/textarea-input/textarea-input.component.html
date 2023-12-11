@@ -10,7 +10,8 @@
     <textarea
       autosize
       [id]="label"
-      class="area"      
+      class="area"
+      [class.empty-area]="!textareaControl.value"    
       [placeholder]="placeholder"
       [formControl]="textareaControl"
     >

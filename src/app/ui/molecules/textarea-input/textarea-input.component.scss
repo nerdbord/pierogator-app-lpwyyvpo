@@ -44,6 +44,9 @@
                 color: v.$dark-green;
             }
 
+            &.empty-area {
+                height: 34px !important;
+            }
         }
     }
 }
