@@ -153,7 +153,7 @@ export class IngredientsComponent {
             getImagePromptBody.messages.push({
                 role: AiRoleEnum.USER,
                 content: `Proszę aby prompt zawierał informacje która pozwoli na wygenerowanie zdjęcia pasującego do tych opisów: ${this.dumplingDescription().dough}. ${this.dumplingDescription().filling}.
-                Odpowiedź musi być stringiem opakowanym w "". Dodatkowo obrazek musi spełniać warunki podane w opisie oraz przypominać kształtem polskie pierogi.
+                Odpowiedź musi być stringiem opakowanym w "". Dodatkowo obrazek musi spełniać warunki podane w opisie oraz przypominać kształtem tradycyjne polskie danie o nazwie pierogi i odnosić się do tematyki kulinarnej. 
           `
             })
         }
