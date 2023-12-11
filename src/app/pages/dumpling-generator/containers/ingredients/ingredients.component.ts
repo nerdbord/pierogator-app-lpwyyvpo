@@ -62,7 +62,6 @@ export class IngredientsComponent {
            Ciasto powinno być w jakiś sposób unikalne, nie korzystaj z gotowych przepisów.
            Ciasto może być zarówno słodkie jak i słone.
            Dodatkowo niech opis zawiera się w jednym krótkim zdaniu.
-           Nie informuj użytkownika, że opisujesz ciasto na pierogi.
            Nie dodawaj żadnych dodatkowych treści po za opisem ciasta.
            Niech będzie to string opakowany w "".         
            `
@@ -79,7 +78,6 @@ export class IngredientsComponent {
            Farsz powinien być w jakiś sposób unikalny, nie korzystaj z gotowych przepisów.
            Farsz może być zarówno słodki jak i słony. 
            Dodatkowo niech opis zawiera się w jednym krótkim zdaniu.
-           Nie informuj użytkownika, że opisujesz farsz na pierogi.
            Nie dodawaj żadnych dodatkowych treści po za opisem farszu.
            Niech będzie to string opakowany w "".         
            `
@@ -187,6 +185,7 @@ export class IngredientsComponent {
       Może składać się z różnych składników.
       Pierogi są delikatne, ale jednocześnie mają sprężystą konsystencję.
       Pierogi są podawane na dużym, płaskim talerzu. 
+      Prompt który zwrócisz ma mieć maksymalnie 1000 znaków.
       `
     }
 
