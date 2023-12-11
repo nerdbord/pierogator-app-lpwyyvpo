@@ -2,6 +2,8 @@
 @import './components/components';
 
 body {
+    position: absolute;
+    inset: 0;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     line-height: 20px;
